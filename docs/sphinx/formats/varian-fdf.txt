@@ -4,7 +4,7 @@
 Varian FDF
 ===============================================================================
 
-Extensions: .fdf 
+Extensions: .fdf
 
 Developer: `Varian, Inc. <http://www.varianinc.com>`_
 
@@ -12,30 +12,25 @@ Developer: `Varian, Inc. <http://www.varianinc.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: VarianFDFReader (:bfreader:`Source Code <VarianFDFReader.java>`, :doc:`Supported Metadata Fields </metadata/VarianFDFReader>`)
 
-Freely Available Software:
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Trestle/>`_
 
 We currently have:
 
-- a few Varian FDF datasets
+* a few Varian FDF datasets
 
 We would like to have:
 
-- an official specification document 
-- more Varian FDF datasets
+* an official specification document 
+* more Varian FDF datasets
 
 **Ratings**
 
@@ -50,12 +45,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`VarianFDFReader.java`
-
-Notes:
 
 

@@ -4,7 +4,7 @@
 Improvision TIFF
 ===============================================================================
 
-Extensions: .tif 
+Extensions: .tif
 
 Developer: `Improvision <http://www.improvision.com/>`_
 
@@ -13,30 +13,24 @@ Owner: `PerkinElmer <http://www.perkinelmer.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: ImprovisionTiffReader (:bfreader:`Source Code <ImprovisionTiffReader.java>`, :doc:`Supported Metadata Fields </metadata/ImprovisionTiffReader>`)
 
-Freely Available Software:
 
-- `IMOD <http://bio3d.colorado.edu/imod/>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Hamamatsu-vms/>`_
 
 We currently have:
 
-- an Improvision TIFF specification document 
-- a few Improvision TIFF datasets
+* an Improvision TIFF specification document 
+* a few Improvision TIFF datasets
 
 We would like to have:
 
-- more Openlab datasets (preferably with 32-bit integer data)
 
 **Ratings**
 
@@ -51,13 +45,7 @@ Presence: |Fair|
 
 Utility: |Good|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`ImprovisionTiffReader.java`
-
-Notes:
 
 **Please note that while we have specification documents for this
 format, we are not able to distribute them to third parties.**

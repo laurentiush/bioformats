@@ -4,7 +4,7 @@
 Aperio SVS TIFF
 ===============================================================================
 
-Extensions: .svs 
+Extensions: .svs
 
 
 Owner: `Aperio <http://www.aperio.com/>`_
@@ -12,30 +12,26 @@ Owner: `Aperio <http://www.aperio.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 8.0, 8.2, 9.0
 
-Supported Metadata Fields:
+Reader: SVSReader (:bfreader:`Source Code <SVSReader.java>`, :doc:`Supported Metadata Fields </metadata/SVSReader>`)
 
-Freely Available Software:
 
-- `Firefox 3+ <http://www.mozilla.com/firefox>`_ 
-- `Opera 9.5+ <http://www.opera.com/download>`_ 
-- `KSquirrel <http://ksquirrel.sourceforge.net/download.php>`_
 
 
 We currently have:
 
-- many SVS datasets 
-- an SVS specification document 
-- the ability to generate additional SVS datasets
+* many SVS datasets
+* `public sample images <http://downloads.openmicroscopy.org/images/SVS/>`__
+* an SVS specification document 
+* the ability to generate additional SVS datasets
 
 We would like to have:
 
-- more Amira Mesh datasets
 
 **Ratings**
 
@@ -50,16 +46,10 @@ Presence: |Good|
 
 Utility: |Good|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`SVSReader.java`
-
-Notes:
 
 **Please note that while we have specification documents for this
 format, we are not able to distribute them to third parties.**
 
 .. seealso:: 
-  `Aperio ImageScope <http://www.aperio.com/#imagescope-request>`_
+  `Aperio ImageScope <http://www.leicabiosystems.com/index.php?id=8991>`_

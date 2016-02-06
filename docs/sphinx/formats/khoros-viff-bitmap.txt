@@ -4,7 +4,7 @@
 Khoros VIFF (Visualization Image File Format) Bitmap
 ===============================================================================
 
-Extensions: .xv 
+Extensions: .xv
 
 Developer: `Khoral <http://www.khoral.com/company/>`_
 
@@ -13,17 +13,15 @@ Owner: `AccuSoft <http://www.accusoft.com/company/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: KhorosReader (:bfreader:`Source Code <KhorosReader.java>`, :doc:`Supported Metadata Fields </metadata/KhorosReader>`)
 
-Freely Available Software:
 
-- `JJ2000 (JPEG 2000 library for Java) <http://code.google.com/p/jj2000/>`_
 
 Sample Datasets:
 
@@ -31,12 +29,10 @@ Sample Datasets:
 
 We currently have:
 
-- several VIFF datasets
+* several VIFF datasets
 
 We would like to have:
 
-- an official specification document 
-- more JPK files
 
 **Ratings**
 
@@ -52,13 +48,4 @@ Presence: |Poor|
 Utility: |Poor|
 
 
-**Additional Information**
 
-
-Source Code: :bfreader:`KhorosReader.java`
-
-Notes:
-
-
-.. seealso:: 
-  `VisiQuest software overview (formerly known as KhorosPro) <http://www.accusoft.com/products/visiquest/>`_

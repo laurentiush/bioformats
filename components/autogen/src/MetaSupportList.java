@@ -2,7 +2,7 @@
  * #%L
  * Bio-Formats autogen package for programmatically generating source code.
  * %%
- * Copyright (C) 2007 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2007 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -24,10 +24,11 @@
  */
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 import loci.common.IniList;
 import loci.common.IniParser;
@@ -39,10 +40,6 @@ import loci.formats.IFormatHandler;
 /**
  * An ugly data structure for organizing the status of each metadata property
  * for each format handler (readers and writers).
- *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/autogen/src/MetaSupportList.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/autogen/src/MetaSupportList.java;hb=HEAD">Gitweb</a></dd></dl>
  *
  * @author Curtis Rueden ctrueden at wisc.edu
  */
@@ -67,8 +64,8 @@ public class MetaSupportList {
   protected MetaEntityList entityList;
 
   /** List of groups. Key is group name, value is list of properties. */
-  protected HashMap<String, Vector<String>> groups =
-    new HashMap<String, Vector<String>>();
+  protected HashMap<String, List<String>> groups =
+    new HashMap<String, List<String>>();
 
   /**
    * List of supported properties. Key is handler name (e.g., AVIReader),
@@ -77,6 +74,8 @@ public class MetaSupportList {
    */
   protected HashMap<String, HashMap<String, String>> supported =
     new HashMap<String, HashMap<String, String>>();
+
+  protected HashMap<String, String> pagenames = new HashMap<String, String>();
 
   /** Version of OME-XML (e.g., 2008-02). */
   protected String version;
@@ -113,7 +112,7 @@ public class MetaSupportList {
     for (String groupName : groupHash.keySet()) {
       String propString = groupHash.get(groupName);
       StringTokenizer st = new StringTokenizer(propString, " ");
-      Vector<String> propList = new Vector<String>();
+      List<String> propList = new ArrayList<String>();
       while (st.hasMoreTokens()) {
         String prop = st.nextToken();
         propList.add(prop);
@@ -139,8 +138,8 @@ public class MetaSupportList {
   public String version() { return version; }
 
   /** Gets a list of all known handlers. */
-  public Vector<String> handlers() {
-    Vector<String> handlers = new Vector<String>();
+  public List<String> handlers() {
+    List<String> handlers = new ArrayList<String>();
     for (String handler : supported.keySet()) handlers.add(handler);
     Collections.sort(handlers);
     return handlers;
@@ -188,30 +187,40 @@ public class MetaSupportList {
     return "handler";
   }
 
+  /** Gets the documentation page name corresponding to this handler. */
+  public String getPageName() {
+    return pagenames.get(handlerName);
+  }
+
+  /** Sets the documentation page name corresponding to this handler. */
+  public void setPageName(String pagename) {
+    pagenames.put(handlerName, pagename);
+  }
+
   /** Gets a list of all known groups. */
-  public Vector<String> groups() {
-    Vector<String> groupList = new Vector<String>();
+  public List<String> groups() {
+    List<String> groupList = new ArrayList<String>();
     for (String group : groups.keySet()) groupList.add(group);
     Collections.sort(groupList);
     return groupList;
   }
 
   /** Gets the list of properties belonging to the given group. */
-  public Vector<String> groupMembers(String group) {
+  public List<String> groupMembers(String group) {
     return groups.get(group);
   }
 
   /** Gets all supported properties for the current handler. */
-  public Vector<String> yes() { return getSupportValue(YES); }
+  public List<String> yes() { return getSupportValue(YES); }
 
   /** Gets all unsupported properties for the current handler. */
-  public Vector<String> no() { return getSupportValue(NO); }
+  public List<String> no() { return getSupportValue(NO); }
 
   /** Gets all partially supported properties for the current handler. */
-  public Vector<String> partial() { return getSupportValue(PARTIAL); }
+  public List<String> partial() { return getSupportValue(PARTIAL); }
 
   /** Gets all inapplicable properties for the current handler. */
-  public Vector<String> missing() { return getSupportValue(MISSING); }
+  public List<String> missing() { return getSupportValue(MISSING); }
 
   /** Gets the number of handlers that support the given property. */
   public int yesHandlerCount(String entity, String prop) {
@@ -264,8 +273,8 @@ public class MetaSupportList {
   // -- Helper methods --
 
   /** Gets properties with the given support value for the current handler. */
-  protected Vector<String> getSupportValue(String supportValue) {
-    Vector<String> props = new Vector<String>();
+  protected List<String> getSupportValue(String supportValue) {
+    List<String> props = new ArrayList<String>();
 
     // for this handler, get table mapping properties to support tags
     HashMap<String, String> supportProps = supported.get(handlerName);

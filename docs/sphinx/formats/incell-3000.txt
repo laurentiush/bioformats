@@ -4,7 +4,7 @@
 InCell 3000
 ===============================================================================
 
-Extensions: .frm 
+Extensions: .frm
 
 Developer: `GE <http://gelifesciences.com/>`_
 
@@ -12,17 +12,15 @@ Developer: `GE <http://gelifesciences.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: InCell3000Reader (:bfreader:`Source Code <InCell3000Reader.java>`, :doc:`Supported Metadata Fields </metadata/InCell3000Reader>`)
 
-Freely Available Software:
 
-- `IMOD <http://bio3d.colorado.edu/imod/>`_
 
 Sample Datasets:
 
@@ -30,11 +28,11 @@ Sample Datasets:
 
 We currently have:
 
-- a few example datasets
+* a few example datasets
 
 We would like to have:
 
-- an official specification document
+* an official specification document
 
 **Ratings**
 
@@ -49,12 +47,5 @@ Presence: |Fair|
 
 Utility: |Poor|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`InCell3000Reader.java`
-
-Notes:
 
 

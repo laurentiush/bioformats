@@ -13,7 +13,21 @@ The first thing we need to do is set up a reader:
       // create a reader that will automatically handle any supported format
       IFormatReader reader = new ImageReader();
       // tell the reader where to store the metadata from the dataset
-      reader.setMetadataStore(MetadataTools.createOMEXMLMetadata());
+      MetadataStore metadata;
+
+      try {
+        ServiceFactory factory = new ServiceFactory();
+        OMEXMLService service = factory.getInstance(OMEXMLService.class);
+        metadata = service.createOMEXMLMetadata();
+      }
+      catch (DependencyException exc) {
+        throw new FormatException("Could not create OME-XML store.", exc);
+      }
+      catch (ServiceException exc) {
+        throw new FormatException("Could not create OME-XML store.", exc);
+      }
+
+      reader.setMetadataStore(metadata);
       // initialize the dataset
       reader.setId("/path/to/file");
 
@@ -29,7 +43,7 @@ Now, we set up our writer:
       // initialize the writer
       writer.setId("/path/to/output/file");
 
-Note that the extension of the file name passed to 'writer.setId(...)'
+Note that the extension of the file name passed to 'writer.setId(…)'
 determines the file format of the exported file.
 
 Now that everything is set up, we can start writing planes:
@@ -174,4 +188,4 @@ Known issues
 ------------
 
 `List of Trac tickets
-<http://trac.openmicroscopy.org.uk/ome/query?status=accepted&status=new&status=reopened&keywords=~export&component=Bio-Formats&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&order=priority>`_
+<https://trac.openmicroscopy.org/ome/query?status=accepted&status=new&status=reopened&keywords=~export&component=Bio-Formats&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&order=priority>`_

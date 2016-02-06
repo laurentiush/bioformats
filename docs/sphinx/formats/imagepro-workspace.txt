@@ -4,7 +4,7 @@
 ImagePro Workspace
 ===============================================================================
 
-Extensions: .ipw 
+Extensions: .ipw
 
 
 Owner: `Media Cybernetics <http://www.mediacy.com/>`_
@@ -12,37 +12,30 @@ Owner: `Media Cybernetics <http://www.mediacy.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: IPWReader (:bfreader:`Source Code <IPWReader.java>`, :doc:`Supported Metadata Fields </metadata/IPWReader>`)
 
-Freely Available Software:
 
-- `Libics (ICS reference library) <http://libics.sourceforge.net/>`_ 
-- `ICS Opener plugin for ImageJ <http://valelab.ucsf.edu/%7Enico/IJplugins/Ics_Opener.html>`_ 
-- `IrfanView <http://www.irfanview.com/>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Hamamatsu-vms/>`_
 
 We currently have:
 
-- the `Image-Pro Plus <http://www.mediacy.com/index.aspx?page=IPP>`_ software 
-- a few IPW datasets 
-- the ability to produce more datasets 
-- some :source:`Bio-Formats developer notes <components/bio-formats/doc/ipw.html>` for IPW
+* the `Image-Pro Plus <http://www.mediacy.com/index.aspx?page=IPP>`_ software 
+* a few IPW datasets 
+* the ability to produce more datasets
 
 We would like to have:
 
-- an official IPW specification document 
-- more IPW datasets: 
--   #. multiple datasets in one file 
--   #. 2+ GB files
+* an official IPW specification document 
+* more IPW datasets: 
+
+  * multiple datasets in one file 
+  * 2+ GB files
 
 **Ratings**
 
@@ -57,13 +50,7 @@ Presence: |Poor|
 
 Utility: |Poor|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`IPWReader.java`
-
-Notes:
 
 
 Bio-Formats uses a modified version of the `Apache Jakarta 

@@ -4,7 +4,7 @@
 Volocity
 ===============================================================================
 
-Extensions: .mvd2 
+Extensions: .mvd2
 
 Developer: `PerkinElmer <http://www.perkinelmer.com/pages/020/cellularimaging/products/volocity.xhtml>`_
 
@@ -12,30 +12,28 @@ Developer: `PerkinElmer <http://www.perkinelmer.com/pages/020/cellularimaging/pr
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: VolocityReader (:bfreader:`Source Code <VolocityReader.java>`, :doc:`Supported Metadata Fields </metadata/VolocityReader>`)
 
-Freely Available Software:
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
 Sample Datasets:
 
-- `Volocity Demo <http://www.perkinelmer.com/pages/020/cellularimaging/products/volocitydemo.xhtml>`_
+- `PerkinElmer Downloads <http://cellularimaging.perkinelmer.com/downloads/>`_
 
 We currently have:
 
-- many example Volocity datasets
+* many example Volocity datasets
 
 We would like to have:
 
-- an official specification document 
-- any Volocity datasets that do not open correctly
+* an official specification document 
+* any Volocity datasets that do not open correctly
 
 **Ratings**
 
@@ -50,13 +48,7 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`VolocityReader.java`
-
-Notes:
 
 
 .mvd2 files are `Metakit database files <http://equi4.com/metakit/>`_.

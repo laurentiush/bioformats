@@ -2,7 +2,7 @@
  * #%L
  * Fork of JAI Image I/O Tools.
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -27,10 +27,6 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * The views and conclusions contained in the software and documentation are
- * those of the authors and should not be interpreted as representing official
- * policies, either expressed or implied, of any organization.
  * #L%
  */
 
@@ -45,13 +41,12 @@
  * Description:             Write codestream headers.
  *
  *
- *
  * COPYRIGHT:
  *
- * This software module was originally developed by Rapha�l Grosbois and
+ * This software module was originally developed by Raphaël Grosbois and
  * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
- * Askel�f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
- * Bouchard, F�lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+ * Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+ * Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
  * Centre France S.A) in the course of development of the JPEG2000
  * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
  * software module is an implementation of a part of the JPEG 2000
@@ -116,7 +111,6 @@ import com.sun.media.imageioimpl.plugins.jpeg2000.J2KImageWriteParamJava;
  * whereas tile-part headers are written when the EBCOTRateAllocator instance
  * calls encodeTilePartHeader.
  *
- * @see Encoder
  * @see Markers
  * @see EBCOTRateAllocator
  * */
@@ -190,7 +184,7 @@ public class HeaderEncoder implements Markers, StdEntropyCoderOptions {
      *
      * @param tiler The tiler module.
      *
-     * @param encSpec The encoder specifications
+     * @param wp The encoder specifications
      *
      * @param roiSc The ROI scaler module.
      *
@@ -1722,7 +1716,7 @@ public class HeaderEncoder implements Markers, StdEntropyCoderOptions {
      * (if needed)</li> <li>RGN (if needed)</li> <li>POC (if needed)</li>
      * <li>SOD</li> </ol>
      *
-     * @param length The length of the current tile-part.
+     * @param tileLength The length of the current tile-part.
      *
      * @param tileIdx Index of the tile to write
      * */

@@ -1,22 +1,31 @@
 Supported Formats
 -----------------
 
-.. tabularcolumns:: |p{3cm}|p{2cm}|c|c|c|c|c|c|c|
+:term:`Ratings legend and definitions`
+
+.. only:: html
+
+    You can sort this table by clicking on any of the headings.
+
+.. tabularcolumns:: |p{3cm}|p{2cm}|c|c|c|c|c|c|c|c|c|
 
 .. list-table::
+   :class: sortable
    :header-rows: 1
-   :widths: 30, 20, 10, 10, 10, 10, 10, 10, 10
+   :widths: 30, 20, 2, 2, 2, 2, 2, 2, 2, 5, 3
 
    *
      - Format
      - Extensions
-     - :term:`Pixels`
-     - :term:`Metadata`
-     - :term:`Openness`
-     - :term:`Presence`
-     - :term:`Utility`
-     - :term:`Export`
-     - :term:`SCIFIO`
+     - .. image:: images/header-pixels.png
+     - .. image:: images/header-metadata.png
+     - .. image:: images/header-openness.png
+     - .. image:: images/header-presence.png
+     - .. image:: images/header-utility.png
+     - .. image:: images/header-export.png
+     - BSD
+     - Multiple Images
+     - Pyramid
 
    * - :doc:`formats/3i-slidebook`
      - .sld
@@ -24,8 +33,10 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Very good|
-     - |Poor|
+     - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/abd-tiff`
      - .tif
@@ -36,6 +47,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/aim`
      - .aim
      - |Good|
@@ -43,6 +56,8 @@ Supported Formats
      - |Fair|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/alicona-3d`
@@ -54,6 +69,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/amersham-biosciences-gel`
      - .gel
      - |Very good|
@@ -61,6 +78,8 @@ Supported Formats
      - |Good|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/amira-mesh`
@@ -72,6 +91,19 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/amnis-flowsight`
+     - .cif
+     - |Good|
+     - |Fair|
+     - |Good|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/analyze-75`
      - .img, .hdr
      - |Very good|
@@ -79,6 +111,8 @@ Supported Formats
      - |Very good|
      - |Good|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/animated-png`
@@ -90,6 +124,19 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
+   * - :doc:`formats/aperio-afi`
+     - .afi, .svs
+     - |Very good|
+     - |Very good|
+     - |Very good|
+     - |Good|
+     - |Good|
+     - |no|
+     - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/aperio-svs-tiff`
      - .svs
      - |Very good|
@@ -99,6 +146,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/applied-precision-cellworx`
      - .htd, .pnl
      - |Very good|
@@ -107,6 +156,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/avi`
      - .avi
@@ -117,6 +168,8 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/axon-raw-format`
      - .arf
      - |Very good|
@@ -124,6 +177,8 @@ Supported Formats
      - |Very good|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/bd-pathway`
@@ -135,6 +190,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/becker-hickl-spcimage`
      - .sdt
      - |Very good|
@@ -144,6 +201,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/bio-rad-gel`
      - .1sc
      - |Good|
@@ -151,6 +210,8 @@ Supported Formats
      - |Fair|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/bio-rad-pic`
@@ -162,23 +223,40 @@ Supported Formats
      - |Very good|
      - |no|
      - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/bio-rad-scn`
+     - .scn
+     - |Very good|
+     - |Fair|
+     - |Fair|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/bitplane-imaris`
      - .ims
      - |Very good|
      - |Very good|
-     - |Good|
+     - |Very good|
      - |Fair|
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/bruker-mri`
-     - .ims
+     - 
      - |Good|
      - |Very good|
      - |Fair|
      - |Good|
      - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/burleigh`
      - .img
@@ -187,6 +265,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/canon-dng`
@@ -198,14 +278,29 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/cellh5`
+     - .ch5
+     - |Very good|
+     - |Good|
+     - |Outstanding|
+     - |Fair|
+     - |Very good|
+     - |yes|
+     - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/cellomics`
-     - .c01
+     - .c01, .dib
      - |Very good|
      - |Poor|
      - |Fair|
      - |Poor|
      - |Poor|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/cellsens-vsi`
      - .vsi
@@ -216,6 +311,19 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
+   * - :doc:`formats/cellvoyager`
+     - .xml, .tif
+     - |Very good|
+     - |Good|
+     - |Good|
+     - |Fair|
+     - |Good|
+     - |no|
+     - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/deltavision`
      - .dv, .r3d
      - |Outstanding|
@@ -224,6 +332,8 @@ Supported Formats
      - |Good|
      - |Good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/dicom`
      - .dcm, .dicom
@@ -234,6 +344,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/ecat7`
      - .v
      - |Good|
@@ -241,6 +353,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/eps`
@@ -252,6 +366,8 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/evotecperkinelmer-opera-flex`
      - .flex, .mea, .res
      - |Outstanding|
@@ -261,6 +377,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/fei`
      - .img
      - |Fair|
@@ -268,6 +386,8 @@ Supported Formats
      - |Poor|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/fei-tiff`
@@ -279,6 +399,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/fits`
      - .fits
      - |Very good|
@@ -288,13 +410,17 @@ Supported Formats
      - |Fair|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/gatan-digital-micrograph`
-     - .dm3
+     - .dm3, .dm4
      - |Very good|
      - |Good|
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/gatan-digital-micrograph-2`
@@ -306,6 +432,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/gif`
      - .gif
      - |Very good|
@@ -315,6 +443,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/hamamatsu-aquacosmos-naf`
      - .naf
      - |Good|
@@ -323,6 +453,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/hamamatsu-his`
      - .his
@@ -333,8 +465,10 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/hamamatsu-ndpi`
-     - .ndpi
+     - .ndpi, .ndpis
      - |Fair|
      - |Good|
      - |Good|
@@ -342,6 +476,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/hamamatsu-vms`
      - .vms
      - |Good|
@@ -351,6 +487,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/hitachi-s-4800`
      - .txt, .tif, .bmp, .jpg
      - |Very good|
@@ -358,6 +496,19 @@ Supported Formats
      - |Very good|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/i2i`
+     - .i2i
+     - |Very Good|
+     - |Good|
+     - |Very Good|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/ics`
@@ -369,6 +520,8 @@ Supported Formats
      - |Very good|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/imacon`
      - .fff
      - |Poor|
@@ -378,6 +531,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/imagepro-sequence`
      - .seq
      - |Very good|
@@ -385,6 +540,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/imagepro-workspace`
@@ -396,6 +553,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/imagic`
      - .hed, .img
      - |Very good|
@@ -403,6 +562,8 @@ Supported Formats
      - |Very good|
      - |Good|
      - |Good|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/imod`
@@ -414,6 +575,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/improvision-openlab-liff`
      - .liff
      - |Very good|
@@ -423,6 +586,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/improvision-openlab-raw`
      - .raw
      - |Outstanding|
@@ -430,6 +595,8 @@ Supported Formats
      - |Very good|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/improvision-tiff`
@@ -441,6 +608,19 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/imspector-obf`
+     - .obf, .msr
+     - |Very good|
+     - |Good|
+     - |Very good|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/incell-1000`
      - .xdce, .tif
      - |Very good|
@@ -450,6 +630,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/incell-3000`
      - .frm
      - |Good|
@@ -457,6 +639,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/inr`
@@ -468,6 +652,19 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/inveon`
+     - .hdr
+     - |Very good|
+     - |Very good|
+     - |Good|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/iplab`
      - .ipl
      - |Outstanding|
@@ -475,6 +672,8 @@ Supported Formats
      - |Very good|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/iplab-mac`
@@ -486,6 +685,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/jeol`
      - .dat, .img, .par
      - |Good|
@@ -493,6 +694,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/jpeg`
@@ -504,6 +707,8 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/jpeg-2000`
      - .jp2
      - |Very good|
@@ -511,6 +716,8 @@ Supported Formats
      - |Outstanding|
      - |Good|
      - |Poor|
+     - |yes|
+     - |yes|
      - |yes|
      - |yes|
    * - :doc:`formats/jpk`
@@ -522,6 +729,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/jpx`
      - .jpx
      - |Very good|
@@ -531,6 +740,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/khoros-viff-bitmap`
      - .xv
      - |Good|
@@ -538,6 +749,8 @@ Supported Formats
      - |Poor|
      - |Poor|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/kodak-bip`
@@ -549,6 +762,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/lambert-instruments-flim`
      - .fli
      - |Very good|
@@ -557,6 +772,19 @@ Supported Formats
      - |Fair|
      - |Good|
      - |no|
+     - |no|
+     - |yes|
+     - |no|
+   * - :doc:`formats/lavision-imspector`
+     - .msr
+     - |Fair|
+     - |Fair|
+     - |Poor|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/leica-lcs-lei`
      - .lei, .tif
@@ -567,6 +795,8 @@ Supported Formats
      - |Very good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/leica-lif`
      - .lif
      - |Outstanding|
@@ -575,6 +805,8 @@ Supported Formats
      - |Good|
      - |Very good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/leica-scn`
      - .scn
@@ -585,6 +817,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/leo`
      - .sxm
      - |Good|
@@ -592,6 +826,8 @@ Supported Formats
      - |Good|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/li-cor-l2d`
@@ -603,6 +839,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/lim`
      - .lim
      - |Good|
@@ -610,6 +848,8 @@ Supported Formats
      - |Poor|
      - |Poor|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/metamorph-75-tiff`
@@ -621,6 +861,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/metamorph-stack-stk`
      - .stk, .nd
      - |Very good|
@@ -628,6 +870,8 @@ Supported Formats
      - |Very good|
      - |Very good|
      - |Good|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/mias-maia-scientific`
@@ -639,6 +883,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/micro-manager`
      - .tif, .txt, .xml
      - |Outstanding|
@@ -648,6 +894,8 @@ Supported Formats
      - |Good|
      - |no|
      - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/minc-mri`
      - .mnc
      - |Very good|
@@ -655,6 +903,8 @@ Supported Formats
      - |Good|
      - |Good|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/minolta-mrw`
@@ -666,6 +916,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/mng`
      - .mng
      - |Good|
@@ -675,6 +927,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/molecular-imaging`
      - .stp
      - |Good|
@@ -682,6 +936,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/mrc`
@@ -693,6 +949,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/nef`
      - .nef, .tif
      - |Very good|
@@ -700,6 +958,8 @@ Supported Formats
      - |Poor|
      - |Poor|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/nifti`
@@ -711,6 +971,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/nikon-elements-tiff`
      - .tiff
      - |Good|
@@ -718,6 +980,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/nikon-ez-c1-tiff`
@@ -729,6 +993,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/nikon-nis-elements-nd2`
      - .nd2
      - |Very good|
@@ -737,6 +1003,8 @@ Supported Formats
      - |Very good|
      - |Very good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/nrrd`
      - .nrrd, .nhdr, .raw, .txt
@@ -747,6 +1015,8 @@ Supported Formats
      - |Very good|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/olympus-cellrapl`
      - .apl, .mtb, .tnb, .tif, .obsep
      - |Very good|
@@ -755,6 +1025,8 @@ Supported Formats
      - |Poor|
      - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/olympus-fluoview-fv1000`
      - .oib, .oif
@@ -765,6 +1037,8 @@ Supported Formats
      - |Very good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/olympus-fluoview-tiff`
      - .tif
      - |Very good|
@@ -773,6 +1047,8 @@ Supported Formats
      - |Good|
      - |Good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/olympus-scanr`
      - .xml, .dat, .tif
@@ -783,6 +1059,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/olympus-sis-tiff`
      - .tiff
      - |Good|
@@ -792,8 +1070,10 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/ome-tiff`
-     - .ome.tiff
+     - `.ome.tiff <http://www.openmicroscopy.org/site/support/ome-model/ome-tiff/index.html>`_
      - |Outstanding|
      - |Outstanding|
      - |Outstanding|
@@ -801,8 +1081,10 @@ Supported Formats
      - |Outstanding|
      - |yes|
      - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/ome-xml`
-     - .ome
+     - `.ome, .ome.xml <http://www.openmicroscopy.org/site/support/ome-model/ome-xml/index.html>`_
      - |Outstanding|
      - |Outstanding|
      - |Outstanding|
@@ -810,6 +1092,8 @@ Supported Formats
      - |Outstanding|
      - |yes|
      - |yes|
+     - |yes|
+     - |no|
    * - :doc:`formats/oxford-instruments`
      - .top
      - |Good|
@@ -817,6 +1101,19 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/pcoraw`
+     - .pcoraw, .rec
+     - |Very good|
+     - |Good|
+     - |Very good|
+     - |Fair|
+     - |Good|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/pcx-pc-paintbrush`
@@ -828,6 +1125,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/perkin-elmer-densitometer`
      - .pds
      - |Good|
@@ -836,6 +1135,19 @@ Supported Formats
      - |Poor|
      - |Fair|
      - |no|
+     - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/perkinelmer-nuance`
+     - .im3
+     - |Good|
+     - |Fair|
+     - |Poor|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |yes|
+     - |yes|
      - |no|
    * - :doc:`formats/perkinelmer-operetta`
      - .tiff, .xml
@@ -846,8 +1158,10 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/perkinelmer-ultraview`
-     - .tif, .2, .3, .4
+     - .tif, .2, .3, .4, etc.
      - |Very good|
      - |Good|
      - |Fair|
@@ -855,8 +1169,10 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/pgm`
-     - .pgm
+     - .pbm, .pgm, .ppm
      - |Very good|
      - |Good|
      - |Outstanding|
@@ -864,6 +1180,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/photoshop-psd`
      - .psd
      - |Good|
@@ -871,6 +1189,8 @@ Supported Formats
      - |Good|
      - |Good|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/photoshop-tiff`
@@ -882,6 +1202,19 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
+   * - :doc:`formats/picoquant-bin`
+     - .bin
+     - |Good|
+     - |Fair|
+     - |Fair|
+     - |Fair|
+     - |Poor|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/pict-macintosh-picture`
      - .pict
      - |Very good|
@@ -891,6 +1224,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/png`
      - .png
      - |Very good|
@@ -900,6 +1235,8 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/prairie-tech-tiff`
      - .tif, .xml, .cfg
      - |Very good|
@@ -909,6 +1246,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/quesant`
      - .afm
      - |Good|
@@ -916,6 +1255,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/quicktime-movie`
@@ -927,6 +1268,8 @@ Supported Formats
      - |Poor|
      - |yes|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/rhk`
      - .sm2, .sm3
      - |Good|
@@ -936,13 +1279,17 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/sbig`
-     - .sm2, .sm3
+     - 
      - |Very good|
      - |Good|
      - |Very good|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/seiko`
@@ -954,6 +1301,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/simplepci-hcimage`
      - .cxd
      - |Outstanding|
@@ -961,6 +1310,8 @@ Supported Formats
      - |Very good|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/simplepci-hcimage-tiff`
@@ -972,13 +1323,17 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/sm-camera`
-     - .tiff
+     - 
      - |Good|
      - |Fair|
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/spider`
@@ -990,6 +1345,8 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/targa`
      - .tga
      - |Very good|
@@ -997,6 +1354,8 @@ Supported Formats
      - |Very good|
      - |Good|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/text`
@@ -1008,6 +1367,8 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |no|
+     - |no|
    * - :doc:`formats/tiff`
      - .tif
      - |Very good|
@@ -1015,6 +1376,8 @@ Supported Formats
      - |Outstanding|
      - |Outstanding|
      - |Fair|
+     - |yes|
+     - |yes|
      - |yes|
      - |yes|
    * - :doc:`formats/tillphotonics-tillvision`
@@ -1026,6 +1389,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/topometrix`
      - .tfr, .ffr, .zfr, .zfp, .2fl
      - |Good|
@@ -1033,6 +1398,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/trestle`
@@ -1044,6 +1411,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |yes|
    * - :doc:`formats/ubm`
      - .pr3
      - |Good|
@@ -1051,6 +1420,8 @@ Supported Formats
      - |Fair|
      - |Poor|
      - |Fair|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/unisoku`
@@ -1062,6 +1433,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/varian-fdf`
      - .fdf
      - |Good|
@@ -1069,6 +1442,19 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |Fair|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/veeco-afm`
+     - .hdf
+     - |Good|
+     - |Fair|
+     - |Very Good|
+     - |Fair|
+     - |Good|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/vg-sam`
@@ -1080,6 +1466,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/visitech-xys`
      - .xys, .html
      - |Very good|
@@ -1088,6 +1476,8 @@ Supported Formats
      - |Poor|
      - |Good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/volocity`
      - .mvd2
@@ -1098,6 +1488,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |yes|
+     - |no|
    * - :doc:`formats/volocity-library-clipping`
      - .acff
      - |Good|
@@ -1105,6 +1497,8 @@ Supported Formats
      - |Fair|
      - |Poor|
      - |Poor|
+     - |no|
+     - |no|
      - |no|
      - |no|
    * - :doc:`formats/wa-top`
@@ -1116,6 +1510,8 @@ Supported Formats
      - |Fair|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/windows-bitmap`
      - .bmp
      - |Very good|
@@ -1125,6 +1521,30 @@ Supported Formats
      - |Poor|
      - |no|
      - |yes|
+     - |no|
+     - |no|
+   * - :doc:`formats/woolz`
+     - .wlz
+     - |Very good|
+     - |Fair|
+     - |Very good|
+     - |Poor|
+     - |Fair|
+     - |yes|
+     - |no|
+     - |no|
+     - |no|
+   * - :doc:`formats/zeiss-axio-csm`
+     - .lms
+     - |Good|
+     - |Poor|
+     - |Poor|
+     - |Poor|
+     - |Fair|
+     - |no|
+     - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/zeiss-axiovision-tiff`
      - .xml, .tiff
      - |Very good|
@@ -1133,6 +1553,8 @@ Supported Formats
      - |Fair|
      - |Fair|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/zeiss-axiovision-zvi`
      - .zvi
@@ -1143,14 +1565,18 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |no|
+     - |no|
    * - :doc:`formats/zeiss-czi`
-     - .czi
+     - `.czi <http://www.zeiss.com/czi>`_
      - |Outstanding|
      - |Outstanding|
      - |Very good|
      - |Fair|
      - |Good|
      - |no|
+     - |no|
+     - |yes|
      - |no|
    * - :doc:`formats/zeiss-lsm`
      - .lsm, .mdb
@@ -1161,10 +1587,26 @@ Supported Formats
      - |Good|
      - |no|
      - |no|
+     - |yes|
+     - |no|
 
-Bio-Formats currently supports **127** formats
+Bio-Formats currently supports **142** formats
 
 .. glossary::
+    Ratings legend and definitions
+      +----------------+-----------------------+
+      +================+=======================+
+      | |Outstanding|  | Outstanding           |
+      +----------------+-----------------------+
+      | |Very good|    | Very good             |
+      +----------------+-----------------------+
+      | |Good|         | Good                  |
+      +----------------+-----------------------+
+      | |Fair|         | Fair                  |
+      +----------------+-----------------------+
+      | |Poor|         | Poor                  |
+      +----------------+-----------------------+
+
     Pixels
         Our estimation of Bio-Formats' ability to reliably extract complete 
         and accurate pixel values from files in that format. The better this 
@@ -1201,11 +1643,17 @@ Bio-Formats currently supports **127** formats
         This indicates whether Bio-Formats is capable of writing the format 
         (Bio-Formats can read every format on this list).
 
-    SCIFIO 
-        This indicates whether format is supported by the
-        :doc:`SCIFIO <developers/scifio>` core library (See the license
-        section on the :doc:`Bio-Formats documentation <index>` page for why
-        this matters).
+    BSD
+        This indicates whether format is BSD-licensed.  By default,
+        format readers and writers are GPL-licensed.
+
+    Multiple Images
+        This indicates whether the format can store multiple Images (in OME-XML terminology)
+        or series (in Bio-Formats API terminology).
+
+    Pyramid
+        This indicates whether the format can store a single image at multiple resolutions,
+        typically referred to as an image pyramid.
 
 .. toctree::
     :maxdepth: 1
@@ -1218,8 +1666,10 @@ Bio-Formats currently supports **127** formats
     formats/alicona-3d
     formats/amersham-biosciences-gel
     formats/amira-mesh
+    formats/amnis-flowsight
     formats/analyze-75
     formats/animated-png
+    formats/aperio-afi
     formats/aperio-svs-tiff
     formats/applied-precision-cellworx
     formats/avi
@@ -1228,12 +1678,15 @@ Bio-Formats currently supports **127** formats
     formats/becker-hickl-spcimage
     formats/bio-rad-gel
     formats/bio-rad-pic
+    formats/bio-rad-scn
     formats/bitplane-imaris
     formats/bruker-mri
     formats/burleigh
     formats/canon-dng
+    formats/cellh5
     formats/cellomics
     formats/cellsens-vsi
+    formats/cellvoyager
     formats/deltavision
     formats/dicom
     formats/ecat7
@@ -1250,6 +1703,7 @@ Bio-Formats currently supports **127** formats
     formats/hamamatsu-ndpi
     formats/hamamatsu-vms
     formats/hitachi-s-4800
+    formats/i2i
     formats/ics
     formats/imacon
     formats/imagepro-sequence
@@ -1259,9 +1713,11 @@ Bio-Formats currently supports **127** formats
     formats/improvision-openlab-liff
     formats/improvision-openlab-raw
     formats/improvision-tiff
+    formats/imspector-obf
     formats/incell-1000
     formats/incell-3000
     formats/inr
+    formats/inveon
     formats/iplab
     formats/iplab-mac
     formats/jeol
@@ -1272,6 +1728,7 @@ Bio-Formats currently supports **127** formats
     formats/khoros-viff-bitmap
     formats/kodak-bip
     formats/lambert-instruments-flim
+    formats/lavision-imspector
     formats/leica-lcs-lei
     formats/leica-lif
     formats/leica-scn
@@ -1301,13 +1758,16 @@ Bio-Formats currently supports **127** formats
     formats/ome-tiff
     formats/ome-xml
     formats/oxford-instruments
+    formats/pcoraw
     formats/pcx-pc-paintbrush
     formats/perkin-elmer-densitometer
+    formats/perkinelmer-nuance
     formats/perkinelmer-operetta
     formats/perkinelmer-ultraview
     formats/pgm
     formats/photoshop-psd
     formats/photoshop-tiff
+    formats/picoquant-bin
     formats/pict-macintosh-picture
     formats/png
     formats/prairie-tech-tiff
@@ -1329,12 +1789,15 @@ Bio-Formats currently supports **127** formats
     formats/ubm
     formats/unisoku
     formats/varian-fdf
+    formats/veeco-afm
     formats/vg-sam
     formats/visitech-xys
     formats/volocity
     formats/volocity-library-clipping
     formats/wa-top
     formats/windows-bitmap
+    formats/woolz
+    formats/zeiss-axio-csm
     formats/zeiss-axiovision-tiff
     formats/zeiss-axiovision-zvi
     formats/zeiss-czi

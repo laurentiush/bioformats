@@ -2,7 +2,7 @@
  * #%L
  * Fork of JAI Image I/O Tools.
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -27,10 +27,6 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * The views and conclusions contained in the software and documentation are
- * those of the authors and should not be interpreted as representing official
- * policies, either expressed or implied, of any organization.
  * #L%
  */
 
@@ -48,10 +44,10 @@
  *
  * COPYRIGHT:
  *
- * This software module was originally developed by Rapha�l Grosbois and
+ * This software module was originally developed by Raphaël Grosbois and
  * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
- * Askel�f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
- * Bouchard, F�lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+ * Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+ * Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
  * Centre France S.A) in the course of development of the JPEG2000
  * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
  * software module is an implementation of a part of the JPEG 2000
@@ -232,7 +228,7 @@ public class ModuleSpec implements Cloneable {
      * Rotate the ModuleSpec instance by 90 degrees (this modifies only tile
      * and tile-component specifications).
      *
-     * @param nT Number of tiles along horizontal and vertical axis after
+     * @param anT Number of tiles along horizontal and vertical axis after
      * rotation. 
      * */
     public void rotate90(Point anT) {
@@ -352,7 +348,7 @@ public class ModuleSpec implements Cloneable {
      * Sets default value for specified tile and specValType tag if
      * allowed by its priority.
      *
-     * @param c Tile index.
+     * @param t Tile index.
      * */
     public void setTileDef(int t, Object value){
         if ( specType == SPEC_TYPE_COMP ) {

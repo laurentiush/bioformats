@@ -4,7 +4,7 @@
 SPIDER
 ===============================================================================
 
-Extensions: .spi, .stk 
+Extensions: .spi, .stk
 
 Developer: `Wadsworth Center <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
@@ -12,31 +12,27 @@ Developer: `Wadsworth Center <http://www.wadsworth.org/spider_doc/spider/docs/sp
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: SpiderReader (:bfreader:`Source Code <SpiderReader.java>`, :doc:`Supported Metadata Fields </metadata/SpiderReader>`)
+
 
 Freely Available Software:
 
 - `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- a few example datasets 
-- `official file format documentation <http://www.wadsworth.org/spider_doc/spider/docs/image_doc.html>`_
+* a few example datasets 
+* `official file format documentation <http://www.wadsworth.org/spider_doc/spider/docs/image_doc.html>`_
 
 We would like to have:
 
-- an official specification document 
-- more SM-Camera files
 
 **Ratings**
 
@@ -51,12 +47,5 @@ Presence: |Good|
 
 Utility: |Good|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`SpiderReader.java`
-
-Notes:
 
 

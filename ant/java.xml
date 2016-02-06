@@ -9,9 +9,11 @@ Type "ant -p" for a list of targets.
 
 <project>
   <property file="${root.dir}/ant/java.properties"/>
-  <import file="${root.dir}/ant/legacy.xml"/>
+  <import file="${root.dir}/ant/common.xml"/>
+  <import file="${root.dir}/ant/version.xml"/>
+  <import file="${root.dir}/ant/xsd-fu.xml"/>
 
-  <taskdef name="testng" classpath="${testng.jar}"
+  <taskdef name="testng" classpath="${lib.dir}/testng-${testng.version}.jar"
     classname="org.testng.TestNGAntTask"/>
   <if>
     <isset property="findbugs.home"/>
@@ -25,11 +27,12 @@ Type "ant -p" for a list of targets.
 
   <!-- Main build targets -->
 
-  <target name="compile" depends="copy-source" description="compile classes">
+  <target name="compile" depends="copy-source,copy-generated-source" description="compile classes">
     <javac debug="true" includeantruntime="false" fork="true"
       deprecation="${component.deprecation}"
       source="${component.java-version}"
       target="${component.java-version}"
+      encoding="UTF-8"
       srcdir="${dest.dir}" destdir="${classes.dir}"
       classpath="${component.classpath}"
       includes="${component.source}">
@@ -43,6 +46,7 @@ Type "ant -p" for a list of targets.
       deprecation="${component.deprecation}"
       source="${component.java-version}"
       target="${component.java-version}"
+      encoding="UTF-8"
       srcdir="${test.dir}" destdir="${test-classes.dir}"
       classpath="${classes.dir}:${component.classpath}"
       includes="${component.source}"/>
@@ -59,8 +63,9 @@ Type "ant -p" for a list of targets.
     <if>
       <equals arg1="${component.junit}" arg2="true"/>
       <then>
-        <junit haltonfailure="true">
+        <junit haltonfailure="true" fork="true">
           <classpath>
+            <pathelement location="${root.dir}/tools/"/><!-- logback.xml -->
             <pathelement location="${artifact.dir}/junit-4.8.2.jar"/>
             <pathelement location="${test-classes.dir}"/>
             <pathelement location="${classes.dir}"/>
@@ -81,6 +86,7 @@ Type "ant -p" for a list of targets.
       <then>
         <testng haltonfailure="true" groups="all" testname="${component.name}">
           <classpath>
+            <pathelement location="${root.dir}/tools/"/><!-- logback.xml -->
             <pathelement path="${component.runtime-cp}"/>
             <pathelement location="${test-classes.dir}"/>
             <pathelement location="${classes.dir}"/>
@@ -170,27 +176,30 @@ your FindBugs installation's lib directory. E.g.:
   <target name="utils" depends="jar"
     description="compile extra utilities">
     <delete>
-      <fileset dir="${utils.dir}" includes="*.class"/>
+      <fileset dir="${utils.dir}" includes="**/*.class"/>
     </delete>
     <javac debug="true" includeantruntime="false" fork="true"
-      deprecation="true" source="1.5" target="1.5"
-      srcdir="${utils.dir}" includes="*.java"
+      deprecation="true" source="1.7" target="1.7"
+      encoding="UTF-8"
+      srcdir="${utils.dir}" includes="**/*.java"
       classpath="${component.classpath}:${artifact.dir}/${component.jar}">
       <!--<compilerarg value="-Xlint:unchecked"/>-->
     </javac>
   </target>
 
-  <target name="docs" depends="compile"
+  <target name="docs" depends="compile, javadoc-properties"
     description="generate javadocs">
     <javadoc sourcepath="${dest.dir}" destdir="${docs.dir}/api"
       classpath="${component.classpath}:${classes.dir}"
+      encoding="UTF-8"
       author="true" version="true" use="true"
-      nodeprecated="true" windowtitle="Bio-Formats API">
+      access="private"
+      nodeprecated="false" windowtitle="Bio-Formats API"
+      additionalparam="${javadoc.doclint}">
       <packageset dir="${dest.dir}"/>
       <doctitle><![CDATA[<h1>Bio-Formats</h1>]]></doctitle>
       <bottom><![CDATA[${copyright.begin} ${YEAR} ${copyright.end}]]></bottom>
-      <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
-      <link href="http://hudson.openmicroscopy.org.uk/job/OMEJAVA/javadoc/"/>
+      <link href="http://docs.oracle.com/javase/7/docs/api/"/>
       <link href="http://rsbweb.nih.gov/ij/developer/api/"/>
       <link href="http://www.ssec.wisc.edu/visad-docs/javadoc/"/>
       <!--<link href="http://www.jdocs.com/formlayout/1.0.4/api/"/>-->
@@ -224,7 +233,7 @@ your FindBugs installation's lib directory. E.g.:
   <!-- Internal build targets -->
 
   <target name="init"
-    depends="init-title, init-timestamp, init-version, init-manifest-cp"/>
+    depends="init-title, init-timestamp, release-version, init-manifest-cp"/>
 
   <target name="init-manifest-cp">
     <!-- construct manifest classpath -->
@@ -249,23 +258,61 @@ your FindBugs installation's lib directory. E.g.:
       -->
       <fileset dir="${src.dir}" includes="(none) ${component.resources-bin}"/>
     </copy>
+    <copy todir="${dest.dir}/META-INF" preservelastmodified="true">
+      <fileset dir="${src.dir}/.." includes="(non) ${component.resources-bin}"/>
+    </copy>
     <!-- copy source files and text resources with filtering -->
     <copy todir="${dest.dir}" preservelastmodified="true">
       <fileset dir="${src.dir}"
         includes="${component.source} ${component.resources-text}"/>
-      <filterset>
-        <filter token="date" value="${DATE}"/>
-        <filter token="year" value="${YEAR}"/>
-        <filter token="vcs.revision" value="${vcs.revision}"/>
-        <filter token="vcs.date" value="${vcs.date}"/>
-        <filter token="release.version" value="${release.version}"/>
-        <filter token="visbio.version" value="${visbio.version}"/>
-      </filterset>
     </copy>
+
+    <replace dir="${dest.dir}" token="$${date}" value="${DATE}"/>
+    <replace dir="${dest.dir}" token="$${year}" value="${YEAR}"/>
+    <replace dir="${dest.dir}" token="$${vcs.shortrevision}" value="${vcs.shortrevision}"/>
+    <replace dir="${dest.dir}" token="$${vcs.revision}" value="${vcs.revision}"/>
+    <replace dir="${dest.dir}" token="$${vcs.date}" value="${vcs.date}"/>
+    <replace dir="${dest.dir}" token="$${vcs.date}_unix" value="${vcs.date_unix}"/>
+    <replace dir="${dest.dir}" token="$${release.version}" value="${release.version}"/>
+    <replace dir="${dest.dir}" token="$${xsdfu.schemaver}" value="${xsdfu.schemaver}"/>
+
     <!-- copy resources to classes folder -->
     <copy todir="${classes.dir}" preservelastmodified="true">
       <fileset dir="${dest.dir}" excludes="${component.source}"/>
     </copy>
+  </target>
+
+  <target name="generate-source" depends="init-title"/>
+
+  <target name="copy-generated-source" depends="init,generate-source">
+    <if>
+      <available file="${gensrc.dir}" type="dir"/>
+      <then>
+	<!-- copy binary resources -->
+	<copy todir="${dest.dir}" preservelastmodified="true">
+	  <!--
+	      include (none) to prevent problems if component.resources-bin is empty
+	  -->
+	  <fileset dir="${gensrc.dir}" includes="(none) ${component.resources-bin}"/>
+	</copy>
+	<!-- copy source files and text resources with filtering -->
+	<copy todir="${dest.dir}" preservelastmodified="true">
+	  <fileset dir="${gensrc.dir}"
+		   includes="${component.source} ${component.resources-text}"/>
+  </copy>
+
+  <replace dir="${dest.dir}" token="$${date}" value="${DATE}"/>
+  <replace dir="${dest.dir}" token="$${year}" value="${YEAR}"/>
+  <replace dir="${dest.dir}" token="$${vcs.shortrevision}" value="${vcs.shortrevision}"/>
+  <replace dir="${dest.dir}" token="$${vcs.revision}" value="${vcs.revision}"/>
+  <replace dir="${dest.dir}" token="$${vcs.date}" value="${vcs.date}"/>
+  <replace dir="${dest.dir}" token="$${release.version}" value="${release.version}"/>
+	<!-- copy resources to classes folder -->
+	<copy todir="${classes.dir}" preservelastmodified="true">
+	  <fileset dir="${dest.dir}" excludes="${component.source}"/>
+	</copy>
+      </then>
+    </if>
   </target>
 
   <target name="copy-test-source" depends="init" if="doTests">

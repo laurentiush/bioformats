@@ -4,7 +4,7 @@
 Applied Precision CellWorX
 ===============================================================================
 
-Extensions: .htd, .pnl 
+Extensions: .htd, .pnl
 
 Developer: `Applied Precision <http://www.api.com>`_
 
@@ -12,29 +12,25 @@ Developer: `Applied Precision <http://www.api.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: CellWorxReader (:bfreader:`Source Code <CellWorxReader.java>`, :doc:`Supported Metadata Fields </metadata/CellWorxReader>`)
 
-Freely Available Software:
 
-- `Firefox 3+ <http://www.mozilla.com/firefox>`_ 
-- `Opera 9.5+ <http://www.opera.com/download>`_ 
-- `KSquirrel <http://ksquirrel.sourceforge.net/download.php>`_
 
 
 We currently have:
 
-- a few CellWorX datasets
+* a few CellWorX datasets
 
 We would like to have:
 
-- a CellWorX specification document 
-- more CellWorX datasets
+* a CellWorX specification document 
+* more CellWorX datasets
 
 **Ratings**
 
@@ -49,12 +45,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`CellWorxReader.java`
-
-Notes:
 
 

@@ -6,16 +6,17 @@ following features:
 
 - The **Bio-Formats Importer** is a plugin for :doc:`loading
   images <load-images>` into ImageJ or
-  Fiji. It can over 100 of proprietary life sciences formats and
+  Fiji. It can read over 140 proprietary life sciences formats and
   standardizes their acquisition metadata into the common
   :doc:`OME data model </about/index>`. It will also extract and set basic
   metadata values such as `spatial
-  calibration <http://pacific.mpi-cbg.de/wiki/index.php/SpatialCalibration>`_
+  calibration <http://fiji.sc/SpatialCalibration>`_
   if they are available in the file.
 
 - The **Bio-Formats Exporter** is a plugin for exporting data to disk. It
-  can save to the open OME-TIFF_ file format, as well as several movie formats
-  (e.g. QuickTime, AVI) and graphics formats (e.g. PNG, JPEG).
+  can save to the open :model_doc:`OME-TIFF <ome-tiff>` file format, as well
+  as several movie formats (e.g. QuickTime, AVI) and graphics formats (e.g.
+  PNG, JPEG).
 
 - The **Bio-Formats Remote Importer** is a plugin for importing data from
   a remote URL. It is likely to be less robust than working with files on
@@ -36,7 +37,7 @@ following features:
   Importer. It can also be used to split a stack across channels, focal
   planes or time points.
 
-- The **LOCI Plugins Configuration** dialog is a useful way to configure
+- The **Bio-Formats Plugins Configuration** dialog is a useful way to configure
   the behavior of each file format. The Formats tab lists supported file 
   formats and toggles each format on or off, which is useful if your file 
   is detected as the wrong format. It also toggles whether each format 
@@ -44,11 +45,11 @@ following features:
   You can also configure any specific option for each format. The Libraries 
   tab provides a list of available helper libraries used by Bio-Formats.
 
-- The **LOCI Plugins Shortcut Window** opens a small window with a
-  quick-launch button for each LOCI plugin. Dragging and dropping files
+- The **Bio-Formats Plugins Shortcut Window** opens a small window with a
+  quick-launch button for each plugin. Dragging and dropping files
   onto the shortcut window opens them quickly using the **Bio-Formats
   Importer** plugin.
 
-- The **Update LOCI Plugins** command will check for LOCI Plugins updates.
-  We recommend you update to the newest Trunk build as soon as you think
-  you may have :doc:`discovered a bug. </about/bug-reporting>`
+- The **Update Bio-Formats Plugins** command will check for updates to the
+  plugins.  We recommend you update to the newest Trunk build as soon as you
+  think you may have :doc:`discovered a bug. </about/bug-reporting>`

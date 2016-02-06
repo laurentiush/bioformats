@@ -2,7 +2,7 @@
  * #%L
  * OME Bio-Formats manual and automated test suite.
  * %%
- * Copyright (C) 2006 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2006 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -41,7 +41,7 @@ import nl.javadude.assumeng.Assumption;
 import nl.javadude.assumeng.AssumptionListener;
 
 import org.perf4j.StopWatch;
-import org.perf4j.log4j.Log4JStopWatch;
+import org.perf4j.slf4j.Slf4JStopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -52,10 +52,6 @@ import org.testng.annotations.Test;
 
 /**
  * Performs various <code>openBytes()</code> performance tests.
- *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/test-suite/src/loci/tests/testng/OpenBytesPerformanceTest.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/test-suite/src/loci/tests/testng/OpenBytesPerformanceTest.java;hb=HEAD">Gitweb</a></dd></dl>
  *
  * @author Chris Allan <callan at blackcat dot ca>
  */
@@ -239,7 +235,7 @@ public class OpenBytesPerformanceTest
       TestTools.mapFile(id);
     }
 
-    StopWatch stopWatch = new Log4JStopWatch();
+    StopWatch stopWatch = new Slf4JStopWatch();
     reader.setId(id);
     stopWatch.stop(String.format("%s.setId.%s",
             ((ReaderWrapper) reader).unwrap().getClass().getName(), filename));
@@ -271,8 +267,8 @@ public class OpenBytesPerformanceTest
               (int) Math.min(optimalTileHeight, reader.getSizeY() - y);
 
             LOGGER.info("Reading tile at {}x{}", x, y);
-            stopWatch = new Log4JStopWatch(String.format(
-                "%s.%s.alloc_tile.[%d:%d]",
+            stopWatch = new Slf4JStopWatch(String.format(
+                "%s.alloc_tile.%s.[%d:%d]",
                 ((ReaderWrapper) reader).unwrap().getClass().getName(),
                 filename, series, image));
             reader.openBytes(0, x, y, actualTileWidth, actualTileHeight);
@@ -312,8 +308,8 @@ public class OpenBytesPerformanceTest
               (int) Math.min(optimalTileHeight, reader.getSizeY() - y);
 
             LOGGER.info("Reading tile at {}x{}", x, y);
-            stopWatch = new Log4JStopWatch(String.format(
-                "%s.%s.prealloc_tile.[%d:%d]",
+            stopWatch = new Slf4JStopWatch(String.format(
+                "%s.prealloc_tile.%s.[%d:%d]",
                 ((ReaderWrapper) reader).unwrap().getClass().getName(),
                 filename, series, image));
             reader.openBytes(image, buf, x, y, actualTileWidth,

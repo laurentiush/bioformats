@@ -1,10 +1,8 @@
 .. index:: Bruker MRI
-.. index:: .ims
 
 Bruker MRI
 ===============================================================================
 
-Extensions: .ims 
 
 Developer: `Bruker <http://www.bruker.com/>`_
 
@@ -12,13 +10,14 @@ Developer: `Bruker <http://www.bruker.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: BrukerReader (:bfreader:`Source Code <BrukerReader.java>`, :doc:`Supported Metadata Fields </metadata/BrukerReader>`)
+
 
 Freely Available Software:
 
@@ -27,11 +26,11 @@ Freely Available Software:
 
 We currently have:
 
-- a few Bruker MRI datasets
+* a few Bruker MRI datasets
 
 We would like to have:
 
-- an official specification document
+* an official specification document
 
 **Ratings**
 
@@ -46,12 +45,5 @@ Presence: |Good|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`BrukerReader.java`
-
-Notes:
 
 

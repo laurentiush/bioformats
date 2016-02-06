@@ -6,13 +6,16 @@ set of software that interacts with a database to manage images, image
 metadata, image analysis and analysis results. The OME system is capable
 of leveraging Bio-Formats to import files.
 
-**Please note** - the OME server is no longer maintained and has now been superseded by the :omerodoc:`OMERO server <>`.
+**Please note** - the OME server is no longer maintained and has now been
+superseded by the :omerodoc:`OMERO server <>`.  Support for the OME server has
+been entirely removed in the 5.0.0 version of Bio-Formats; the following
+instructions can still be used with the 4.4.x versions.
 
 Installation
 ------------
 
-For `OME Perl v2.6.1 <http://cvs.openmicroscopy.org.uk/>`_ and later,
-the command line installer automatically downloads the latest
+For `OME Perl v2.6.1 <http://downloads.openmicroscopy.org/ome/2.6.1/>`_ and
+later, the command line installer automatically downloads the latest
 **loci\_tools.jar** and places it in the proper location. This location
 is configurable, but is **/OME/java/loci\_tools.jar** by default.
 
@@ -54,27 +57,41 @@ To see the current file format reader list:
 
    ome=# select value from configuration where name='import_formats';
     value
-   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   ['OME::ImportEngine::OMETIFFreader','OME::ImportEngine::MetamorphHTDFormat','OME::ImportEngine::DVreader','OME::ImportEngine::STKreader','OME::ImportEngine::BioradReader','OME::ImportEngine::LSMreader','OME::ImportEngine::TIFFreader','OME::ImportEngine::BMPreader','OME::ImportEngine::DICOMreader','OME::ImportEngine::XMLreader','OME::ImportEngine::BioFormats']
+   ------------------------------------------------------------------------------
+   ['OME::ImportEngine::OMETIFFreader','OME::ImportEngine::MetamorphHTDFormat',
+   'OME::ImportEngine::DVreader','OME::ImportEngine::STKreader',
+   'OME::ImportEngine::BioradReader','OME::ImportEngine::LSMreader',
+   'OME::ImportEngine::TIFFreader','OME::ImportEngine::BMPreader',
+   'OME::ImportEngine::DICOMreader','OME::ImportEngine::XMLreader',
+   'OME::ImportEngine::BioFormats']
     (1 row)
 
 To remove extraneous readers from the list:
 
 ::
 
-   ome=# update configuration set value='[\'OME::ImportEngine::MetamorphHTDFormat\',\'OME::ImportEngine::XMLreader\',\'OME::ImportEngine::BioFormats\']' where name='import_formats';
+   ome=# update configuration set value='[\'OME::ImportEngine::MetamorphHTDFormat\',
+   \'OME::ImportEngine::XMLreader\',\'OME::ImportEngine::BioFormats\']' where
+   name='import_formats';
    UPDATE 1
    ome=# select value from configuration where name='import_formats';
     value
-   ----------------------------------------------------------------------------------------------------------
-   ['OME::ImportEngine::MetamorphHTDFormat','OME::ImportEngine::XMLreader','OME::ImportEngine::BioFormats']
+   ------------------------------------------------------------------------------
+   ['OME::ImportEngine::MetamorphHTDFormat','OME::ImportEngine::XMLreader',
+   'OME::ImportEngine::BioFormats']
     (1 row)
 
 To reset things back to how they were:
 
 ::
 
-   ome=# update configuration set value='[\'OME::ImportEngine::OMETIFFreader\',\'OME::ImportEngine::MetamorphHTDFormat\',\'OME::ImportEngine::DVreader\',\'OME::ImportEngine::STKreader\',\'OME::ImportEngine::BioradReader\',\'OME::ImportEngine::LSMreader\',\'OME::ImportEngine::TIFFreader\',\'OME::ImportEngine::BMPreader\',\'OME::ImportEngine::DICOMreader\',\'OME::ImportEngine::XMLreader\',\'OME::ImportEngine::BioFormats\']' where name='import_formats';
+   ome=# update configuration set value='[\'OME::ImportEngine::OMETIFFreader\',
+   \'OME::ImportEngine::MetamorphHTDFormat\',\'OME::ImportEngine::DVreader\',
+   \'OME::ImportEngine::STKreader\',\'OME::ImportEngine::BioradReader\',
+   \'OME::ImportEngine::LSMreader\',\'OME::ImportEngine::TIFFreader\',
+   \'OME::ImportEngine::BMPreader\',\'OME::ImportEngine::DICOMreader\',
+   \'OME::ImportEngine::XMLreader\',\'OME::ImportEngine::BioFormats\']' where
+   name='import_formats';
 
 Lastly, please note that Li-Cor L2D files cannot be imported into an OME
 server (see `this Trac
@@ -86,7 +103,7 @@ Upgrading
 ---------
 
 You can upgrade your OME server installation to take advantage of a
-:bf_plone:`new Bio-Formats release <downloads>` by overwriting the old 
+:downloads:`new Bio-Formats release <>` by overwriting the old 
 **loci\_tools.jar** with the new one.
 
 Source Code
@@ -97,10 +114,10 @@ three languages, using piped system calls in both directions to
 communicate, with imported pixels written to OMEIS pixels files. The
 relevant source files are:
 
--  :source:`OmeisImporter.java <components/scifio/src/loci/formats/ome/OmeisImporter.java>`
+-  `OmeisImporter.java <http://github.com/openmicroscopy/bioformats/tree/v4.4.10/components/scifio/src/loci/formats/ome/OmeisImporter.java>`_
    – omebf Java command line tool
--  `BioFormats.pm <http://svn.openmicroscopy.org.uk/svn/ome/trunk/src/perl2/OME/ImportEngine/BioFormats.pm>`_
+-  `BioFormats.pm <http://downloads.openmicroscopy.org/ome/code/BioFormats.pm>`_
    – Perl module for OME Bio-Formats importer
--  `omeis.c <http://svn.openmicroscopy.org.uk/svn/ome/trunk/src/C/omeis/omeis.c>`_
+-  `omeis.c <http://downloads.openmicroscopy.org/ome/code/omeis.c>`_
    – OMEIS C functions for Bio-Formats (search for "bioformats" case
    insensitively to find relevant sections)

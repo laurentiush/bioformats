@@ -4,7 +4,7 @@
 Alicona 3D
 ===============================================================================
 
-Extensions: .al3d 
+Extensions: .al3d
 
 
 Owner: `Alicona Imaging <http://www.alicona.com/>`_
@@ -12,24 +12,25 @@ Owner: `Alicona Imaging <http://www.alicona.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 1.0
 
-Supported Metadata Fields:
+Reader: AliconaReader (:bfreader:`Source Code <AliconaReader.java>`, :doc:`Supported Metadata Fields </metadata/AliconaReader>`)
+
 
 
 
 We currently have:
 
-- an `AL3D specification document <http://www.alicona.com/home/fileadmin/alicona/downloads/AL3DFormat.pdf>`_ (v1.0, from 2003, in PDF) 
-- a few AL3D datasets
+* an `AL3D specification document <http://www.alicona.com/home/fileadmin/alicona/downloads/AL3DFormat.pdf>`_ (v1.0, from 2003, in PDF) 
+* a few AL3D datasets
 
 We would like to have:
 
-- more AL3D datasets (Z series, T series, 16-bit)
+* more AL3D datasets (Z series, T series, 16-bit)
 
 **Ratings**
 
@@ -44,13 +45,7 @@ Presence: |Poor|
 
 Utility: |Good|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`AliconaReader.java`
-
-Notes:
 
 
 Known deficiencies: 

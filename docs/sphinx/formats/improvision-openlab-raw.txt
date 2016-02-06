@@ -4,7 +4,7 @@
 Improvision Openlab Raw
 ===============================================================================
 
-Extensions: .raw 
+Extensions: .raw
 
 Developer: `Improvision <http://www.improvision.com/>`_
 
@@ -13,30 +13,24 @@ Owner: `PerkinElmer <http://www.perkinelmer.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: OpenlabRawReader (:bfreader:`Source Code <OpenlabRawReader.java>`, :doc:`Supported Metadata Fields </metadata/OpenlabRawReader>`)
 
-Freely Available Software:
 
-- `IMOD <http://bio3d.colorado.edu/imod/>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Hamamatsu-vms/>`_
 
 We currently have:
 
-- an `Openlab Raw specification document <http://cellularimaging.perkinelmer.com/support/technical_notes/detail.php?id=344>`_ (from 2004 November 09, in HTML) 
-- a few Openlab Raw datasets
+* an `Openlab Raw specification document <http://cellularimaging.perkinelmer.com/support/technical_notes/detail.php?id=344>`_ (from 2004 November 09, in HTML) 
+* a few Openlab Raw datasets
 
 We would like to have:
 
-- more Openlab datasets (preferably with 32-bit integer data)
 
 **Ratings**
 
@@ -51,13 +45,7 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`OpenlabRawReader.java`
-
-Notes:
 
 
 .. seealso:: 

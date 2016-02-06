@@ -4,38 +4,33 @@
 UBM
 ===============================================================================
 
-Extensions: .pr3 
+Extensions: .pr3
 
 
 
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: UBMReader (:bfreader:`Source Code <UBMReader.java>`, :doc:`Supported Metadata Fields </metadata/UBMReader>`)
 
-Freely Available Software:
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Trestle/>`_
 
 We currently have:
 
-- Pascal code that can read UBM files (from ImageSXM) 
-- one UBM file
+* Pascal code that can read UBM files (from ImageSXM) 
+* one UBM file
 
 We would like to have:
 
-- an official specification document 
-- more UBM files
+* an official specification document 
+* more UBM files
 
 **Ratings**
 
@@ -50,12 +45,5 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`UBMReader.java`
-
-Notes:
 
 

@@ -2,7 +2,7 @@
  * #%L
  * OME Bio-Formats manual and automated test suite.
  * %%
- * Copyright (C) 2006 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2006 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -34,10 +34,9 @@ import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.FieldPosition;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import loci.common.ByteArrayHandle;
@@ -49,10 +48,7 @@ import loci.common.RandomAccessInputStream;
 import loci.formats.IFormatReader;
 import loci.formats.IFormatWriter;
 import loci.formats.ImageReader;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.PatternLayout;
-import org.apache.log4j.WriterAppender;
+import loci.formats.in.SlideBook6Reader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,9 +56,6 @@ import org.slf4j.LoggerFactory;
 /**
  * Utility methods for use with TestNG tests.
  *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/test-suite/src/loci/tests/testng/TestTools.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/test-suite/src/loci/tests/testng/TestTools.java;hb=HEAD">Gitweb</a></dd></dl>
 */
 public class TestTools {
 
@@ -73,10 +66,7 @@ public class TestTools {
   public static final String DIVIDER =
     "----------------------------------------";
 
-  /** Gets a timestamp for the current moment. */
-  public static String timestamp() {
-    return DateTools.convertDate(System.currentTimeMillis(), DateTools.UNIX);
-  }
+  public static final String baseConfigName = ".bioformats";
 
   /** Calculate the SHA-1 of a byte array. */
   public static String sha1(byte[] b, int offset, int len) {
@@ -152,6 +142,12 @@ public class TestTools {
   public static boolean canFitInMemory(long bufferSize) {
     Runtime r = Runtime.getRuntime();
     long mem = r.freeMemory() / 2;
+    int threadCount = 1;
+    try {
+      threadCount = Integer.parseInt(System.getProperty("testng.threadCount"));
+    }
+    catch (NumberFormatException e) { }
+    mem /= threadCount;
     return bufferSize < mem && bufferSize <= Integer.MAX_VALUE;
   }
 
@@ -169,29 +165,17 @@ public class TestTools {
     return dot < 0 ? name : name.substring(dot + 1);
   }
 
-  /** Creates a new log file. */
-  public static void createLogFile() {
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-    StringBuffer dateBuf = new StringBuffer();
-    fmt.format(new Date(), dateBuf, new FieldPosition(0));
-    String logFile = "loci-software-test-" + dateBuf + ".log";
-    LOGGER.info("Output logged to {}", logFile);
-    try {
-      org.apache.log4j.Logger root = org.apache.log4j.Logger.getRootLogger();
-      root.setLevel(Level.INFO);
-      root.addAppender(new WriterAppender(
-        new PatternLayout("%p [%d{dd-MM-yyyy HH:mm:ss.SSS}] %m%n"),
-        new PrintWriter(logFile, Constants.ENCODING)));
+  /** Recursively generate a list of files to test. */
+  public static boolean isConfigFile(Location file, String configFileSuffix)
+  {
+    String configName = baseConfigName;
+    if (configFileSuffix.length() > 0) {
+      configName += ".";
+      configName += configFileSuffix;
     }
-    catch (IOException e) { LOGGER.info("", e); }
 
-    // close log file on exit
-    Runtime.getRuntime().addShutdownHook(new Thread() {
-      public void run() {
-        LOGGER.info(DIVIDER);
-        LOGGER.info("Test suite complete.");
-      }
-    });
+    String filename = file.getName();
+    return (filename.equals(configName) || filename.equals(baseConfigName));
   }
 
   /** Recursively generate a list of files to test. */
@@ -205,6 +189,52 @@ public class TestTools {
   public static void getFiles(String root, List files,
     final ConfigurationTree config, String toplevelConfig, String[] subdirs)
   {
+    getFiles(root, files, config, toplevelConfig, subdirs, "");
+  }
+
+  /**
+   * Retrieve an external configuration file given a root directory and test
+   * configuration
+   */
+  public static String getExternalConfigFile(String root,
+    final ConfigurationTree config)
+  {
+    // Look for a configuration file under the configuration directory
+    String configRoot = config.relocateToConfig(root);
+    Location configFile = new Location(configRoot, baseConfigName);
+    if (configFile.exists()) {
+      return configFile.getAbsolutePath();
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * Retrieve an external symlinkedconfiguration file given a root directory 
+   * and a test configuration
+   */
+  public static String getExternalSymlinkConfigFile(String root,
+    final ConfigurationTree config)
+  {
+    // Look for a configuration file under the configuration directory
+    try {
+      String canonicalRoot = new Location(root).getCanonicalPath();
+      if (!root.equals(canonicalRoot)) {
+        String configCanonicalRoot = config.relocateToConfig(canonicalRoot);
+        Location configFile = new Location(configCanonicalRoot, baseConfigName);
+        if (configFile.exists()) {
+          return configFile.getAbsolutePath();
+        }
+      }
+    } catch (IOException e) {};
+    return null;
+  }
+
+  /** Recursively generate a list of files to test. */
+  public static void getFiles(String root, List files,
+    final ConfigurationTree config, String toplevelConfig, String[] subdirs,
+    String configFileSuffix)
+  {
     Location f = new Location(root);
     String[] subs = f.list();
     if (subs == null) subs = new String[0];
@@ -214,31 +244,63 @@ public class TestTools {
 
     boolean isToplevel =
      toplevelConfig != null && new File(toplevelConfig).exists();
+    Arrays.sort(subs);
+    boolean isSymlinkConfig = false;
+
+    List<String> subsList = new ArrayList<String>();
+
+    if (config.getConfigDirectory() != null) {
+      String configFile = getExternalConfigFile(root, config);
+      if (configFile != null) {
+        LOGGER.debug("found config file: {}", configFile);
+        subsList.add(configFile);
+      } else {
+        configFile = getExternalSymlinkConfigFile(root, config);
+        if (configFile != null) {
+          LOGGER.debug("found symlinked config file: {}", configFile);
+          subsList.add(configFile);
+          isSymlinkConfig = true;
+        }
+      }
+    }
 
     // make sure that if a config file exists, it is first on the list
     for (int i=0; i<subs.length; i++) {
       Location file = new Location(root, subs[i]);
-      subs[i] = file.getAbsolutePath();
-      if ((!isToplevel && file.getName().equals(".bioformats")) ||
-        (isToplevel && subs[i].equals(toplevelConfig)))
-      {
-        String tmp = subs[0];
-        subs[0] = subs[i];
-        subs[i] = tmp;
 
-        // special config file for the test suite
-        LOGGER.info("\tconfig file");
-        try {
-          config.parseConfigFile(subs[0]);
+      if ((!isToplevel && isConfigFile(file, configFileSuffix)) ||
+          (isToplevel && subs[i].equals(toplevelConfig)))
+      {
+        if (config.getConfigDirectory() == null) {
+          LOGGER.debug("adding config file: {}", file.getAbsolutePath());
+          subsList.add(0, file.getAbsolutePath());
         }
-        catch (IOException exc) {
-          LOGGER.info("", exc);
+      } else {
+        if (isSymlinkConfig) {
+          try {
+            subsList.add(file.getCanonicalPath());
+          } catch (IOException e) {
+            subsList.add(file.getAbsolutePath());
+          }
+        } else {
+          subsList.add(file.getAbsolutePath());
         }
-        catch (Exception e) { }
       }
     }
 
+    // special config file for the test suite
+    LOGGER.debug("\tconfig file");
+    try {
+      LOGGER.debug("Parsing {}:", subsList.get(0));
+      config.parseConfigFile(subsList.get(0));
+    }
+    catch (IOException exc) {
+      LOGGER.debug("", exc);
+    }
+    catch (Exception e) { }
+
     Arrays.sort(subs, new Comparator() {
+      @Override
       public int compare(Object o1, Object o2) {
         String s1 = o1.toString();
         String s2 = o2.toString();
@@ -266,29 +328,30 @@ public class TestTools {
       }
     });
 
-    ImageReader typeTester = new ImageReader();
+    ImageReader typeTester = TestTools.getTestImageReader();
 
-    for (int i=0; i<subs.length; i++) {
-      Location file = new Location(subs[i]);
-      LOGGER.info("Checking {}:", subs[i]);
+    for (int i=0; i<subsList.size(); i++) {
+      Location file = new Location(subsList.get(i));
+      LOGGER.debug("Checking {}:", subsList.get(i));
 
-      if (file.getName().equals(".bioformats")) {
+      if (isConfigFile(file, configFileSuffix)) {
         continue;
       }
-      else if (isIgnoredFile(subs[i], config)) {
-        LOGGER.info("\tignored");
+      else if (isIgnoredFile(subsList.get(i), config)) {
+        LOGGER.debug("\tignored");
         continue;
       }
       else if (file.isDirectory()) {
-        LOGGER.info("\tdirectory");
-        getFiles(subs[i], files, config, null);
+        LOGGER.debug("\tdirectory");
+        getFiles(subsList.get(i), files, config, null, null, configFileSuffix);
       }
-      else if (!subs[i].endsWith("readme.txt")) {
-        if (typeTester.isThisType(subs[i])) {
-          LOGGER.info("\tOK");
+      else if (!subsList.get(i).endsWith("readme.txt") &&
+               !subsList.get(i).endsWith("test_setup.ini")) {
+        if (typeTester.isThisType(subsList.get(i))) {
+          LOGGER.debug("\tOK");
           files.add(file.getAbsolutePath());
         }
-        else LOGGER.info("\tunknown type");
+        else LOGGER.debug("\tunknown type");
       }
       file = null;
     }
@@ -415,5 +478,16 @@ public class TestTools {
     return false;
   }
 
+  /**
+   * Return an ImageReader that is appropriate for testing.
+   * All constructed reader wrappers should use this ImageReader,
+   * as it removes any readers that aren't to be tested.
+   */
+  public static ImageReader getTestImageReader() {
+    // Remove external SlideBook6Reader class for testing purposes
+    ImageReader ir = new ImageReader();
+    ir.getDefaultReaderClasses().removeClass(SlideBook6Reader.class);
+    return ir;
+  }
 
 }

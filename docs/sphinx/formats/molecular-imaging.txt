@@ -4,39 +4,34 @@
 Molecular Imaging
 ===============================================================================
 
-Extensions: .stp 
+Extensions: .stp
 
 
-Owner: `Molecular Imaging <http://www.molecularimagingcorp.com>`_
+Owner: Molecular Imaging Corp, San Diego CA (closed)
 
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MolecularImagingReader (:bfreader:`Source Code <MolecularImagingReader.java>`, :doc:`Supported Metadata Fields </metadata/MolecularImagingReader>`)
 
-Freely Available Software:
 
-- `libmng (MNG reference library) <http://sourceforge.net/projects/libmng/>`_
 
-Sample Datasets:
-
-- `MNG sample files <http://sourceforge.net/projects/libmng/files/libmng-testsuites/MNGsuite-1.0/MNGsuite.zip/download>`_
 
 We currently have:
 
-- Pascal code that reads Molecular Imaging files (from ImageSXM) 
-- a few Molecular Imaging files
+* Pascal code that reads Molecular Imaging files (from ImageSXM) 
+* a few Molecular Imaging files
 
 We would like to have:
 
-- an official specification document 
-- more Molecular Imaging files
+* an official specification document 
+* more Molecular Imaging files
 
 **Ratings**
 
@@ -51,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`MolecularImagingReader.java`
-
-Notes:
 
 

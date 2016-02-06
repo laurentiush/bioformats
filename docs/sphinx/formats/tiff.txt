@@ -4,7 +4,7 @@
 TIFF (Tagged Image File Format)
 ===============================================================================
 
-Extensions: .tif 
+Extensions: .tif
 
 Developer: Aldus and Microsoft
 
@@ -13,33 +13,30 @@ Owner: `Adobe <http://www.adobe.com>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |yes|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: TiffReader (:bsd-reader:`Source Code <TiffReader.java>`, :doc:`Supported Metadata Fields </metadata/TiffReader>`)
 
-Freely Available Software:
+Writer: TiffWriter (:bsd-writer:`Source Code <TiffWriter.java>`)
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
 Sample Datasets:
 
 - `LZW TIFF data gallery <http://marlin.life.utsa.edu/Data_Gallery.html>`_ 
-- `Big TIFF <http://tiffcentral.com/>`_
+- `Big TIFF <http://www.awaresystems.be/imaging/tiff/bigtiff.html#samples>`_
 
 We currently have:
 
-- a `TIFF specification document <http://partners.adobe.com/asn/developer/PDFS/TN/TIFF6.pdf>`_ (v6.0, from 1992 June 3, in PDF) 
-- many TIFF datasets 
-- a few BigTIFF datasets
+* a `TIFF specification document <http://partners.adobe.com/asn/developer/PDFS/TN/TIFF6.pdf>`_ (v6.0, from 1992 June 3, in PDF) 
+* many TIFF datasets 
+* a few BigTIFF datasets
 
 We would like to have:
 
-- an official specification document 
-- more SM-Camera files
 
 **Ratings**
 
@@ -54,14 +51,7 @@ Presence: |Outstanding|
 
 Utility: |Fair|
 
-
 **Additional Information**
-
-
-Source Code: :scifioreader:`TiffReader.java`
-Source Code: :scifiowriter:`TiffWriter.java`
-
-Notes:
 
 
 Bio-Formats can also read BigTIFF files (TIFF files larger than 4 GB). 

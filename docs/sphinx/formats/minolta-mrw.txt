@@ -4,7 +4,7 @@
 Minolta MRW
 ===============================================================================
 
-Extensions: .mrw 
+Extensions: .mrw
 
 Developer: `Minolta <http://www.konicaminolta.com/>`_
 
@@ -12,29 +12,26 @@ Developer: `Minolta <http://www.konicaminolta.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MRWReader (:bfreader:`Source Code <MRWReader.java>`, :doc:`Supported Metadata Fields </metadata/MRWReader>`)
+
 
 Freely Available Software:
 
 - `dcraw <http://www.cybercom.net/%7Edcoffin/dcraw/>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- several .mrw files
+* several .mrw files
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -50,13 +47,4 @@ Presence: |Fair|
 Utility: |Fair|
 
 
-**Additional Information**
 
-
-Source Code: :bfreader:`MRWReader.java`
-
-Notes:
-
-
-.. seealso:: 
-  `Description of MRW format <http://www.dalibor.cz/files/MRW%20File%20Format.txt>`_

@@ -4,7 +4,7 @@
 Hamamatsu HIS
 ===============================================================================
 
-Extensions: .his 
+Extensions: .his
 
 
 Owner: `Hamamatsu <http://www.hamamatsu.com>`_
@@ -12,34 +12,26 @@ Owner: `Hamamatsu <http://www.hamamatsu.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: HISReader (:bfreader:`Source Code <HISReader.java>`, :doc:`Supported Metadata Fields </metadata/HISReader>`)
 
-Freely Available Software:
 
-- `Animated GIF Reader plugin for ImageJ <http://rsb.info.nih.gov/ij/plugins/agr.html>`_ 
-- `GIF Stack Writer plugin for ImageJ <http://rsb.info.nih.gov/ij/plugins/gif-stack-writer.html>`_
 
-Sample Datasets:
-
-- `MRI Chest from FreeVol-3D web site <http://members.tripod.com/%7Eclunis_immensus/free3d/hk-40.zip>`_ 
-- `Medical Image Samples from Sebastien Barre's Medical Imaging page <http://www.barre.nom.fr/medical/samples/>`_ 
-- `DICOM sample image sets from OsiriX web site <http://osirix-viewer.com/datasets/>`_
 
 We currently have:
 
-- Pascal code that can read HIS files (from ImageSXM) 
-- several HIS files
+* Pascal code that can read HIS files (from ImageSXM) 
+* several HIS files
 
 We would like to have:
 
-- an HIS specification 
-- more HIS files
+* an HIS specification 
+* more HIS files
 
 **Ratings**
 
@@ -54,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`HISReader.java`
-
-Notes:
 
 

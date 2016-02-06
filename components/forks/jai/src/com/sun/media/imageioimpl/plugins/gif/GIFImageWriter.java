@@ -2,7 +2,7 @@
  * #%L
  * Fork of JAI Image I/O Tools.
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -27,10 +27,6 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * The views and conclusions contained in the software and documentation are
- * those of the authors and should not be interpreted as representing official
- * policies, either expressed or implied, of any organization.
  * #L%
  */
 
@@ -771,21 +767,21 @@ public class GIFImageWriter extends ImageWriter {
         } else {
             throw new IllegalArgumentException("Must write header for single image!");
         }
-        
+
         // Write extension blocks, Image Descriptor, and image data.
         writeImage(iioimage.getRenderedImage(), imageMetadata, p,
                    globalColorTable, sourceBounds, destSize);
-        
+
         // Write the trailer.
         if (writeTrailer) {
             writeTrailer();
         }
     }
-    
+
     /**
      * Writes any extension blocks, the Image Descriptor, and the image data
      *
-     * @param iioimage The image and image metadata.
+     * @param image The image and image metadata.
      * @param param The write parameters.
      * @param globalColorTable The Global Color Table.
      * @param sourceBounds The source region.

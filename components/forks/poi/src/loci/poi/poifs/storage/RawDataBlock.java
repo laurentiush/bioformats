@@ -2,7 +2,7 @@
  * #%L
  * Fork of Apache Jakarta POI.
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -71,14 +71,14 @@ public class RawDataBlock
      *            amount of data is read
      */
 
-    public RawDataBlock(final RandomAccessInputStream stream, int size)
+    public RawDataBlock(final RandomAccessInputStream stream, int size, long pointer)
         throws IOException
     {
         this.stream = stream;
         blockSize = size;
         length = blockSize;
-        _eof = (stream.length() - stream.getFilePointer()) <= 0;
-        offset = stream.getFilePointer();
+        _eof = (stream.length() - pointer) <= 0;
+        offset = pointer;
     }
 
     /**

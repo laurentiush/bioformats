@@ -2,7 +2,7 @@
  * #%L
  * Bio-Formats autogen package for programmatically generating source code.
  * %%
- * Copyright (C) 2007 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2007 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -26,9 +26,6 @@
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
 
 import org.apache.velocity.Template;
@@ -37,10 +34,6 @@ import org.apache.velocity.app.VelocityEngine;
 
 /**
  * Useful methods for working with Apache Velocity.
- *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/autogen/src/VelocityTools.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/autogen/src/VelocityTools.java;hb=HEAD">Gitweb</a></dd></dl>
  *
  * @author Curtis Rueden ctrueden at wisc.edu
  */
@@ -64,10 +57,6 @@ public class VelocityTools {
     // populate Velocity context
     VelocityContext context = new VelocityContext();
     context.put("user", System.getProperty("user.name"));
-    DateFormat dateFmt = DateFormat.getDateInstance(DateFormat.MEDIUM);
-    DateFormat timeFmt = DateFormat.getTimeInstance(DateFormat.LONG);
-    Date date = Calendar.getInstance().getTime();
-    context.put("timestamp", dateFmt.format(date) + " " + timeFmt.format(date));
 
     return context;
   }

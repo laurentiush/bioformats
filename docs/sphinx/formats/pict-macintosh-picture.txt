@@ -4,7 +4,7 @@
 PICT (Macintosh Picture)
 ===============================================================================
 
-Extensions: .pict 
+Extensions: .pict
 
 Developer: `Apple Computer <http://www.apple.com>`_
 
@@ -12,30 +12,23 @@ Developer: `Apple Computer <http://www.apple.com>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: PictReader (:bsd-reader:`Source Code <PictReader.java>`, :doc:`Supported Metadata Fields </metadata/PictReader>`)
 
-Freely Available Software:
 
-- `Netpbm graphics filter <http://netpbm.sourceforge.net/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- many PICT datasets
+* many PICT datasets
 
 We would like to have:
 
-- an official specification document 
-- more sample datasets
 
 **Ratings**
 
@@ -50,13 +43,7 @@ Presence: |Very good|
 
 Utility: |Poor|
 
-
 **Additional Information**
-
-
-Source Code: :scifioreader:`PictReader.java`
-
-Notes:
 
 
 `QuickTime for Java 

@@ -4,7 +4,7 @@
 MetaMorph 7.5 TIFF
 ===============================================================================
 
-Extensions: .tiff 
+Extensions: .tiff
 
 
 Owner: `Molecular Devices <http://www.moleculardevices.com/>`_
@@ -12,29 +12,23 @@ Owner: `Molecular Devices <http://www.moleculardevices.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MetamorphTiffReader (:bfreader:`Source Code <MetamorphTiffReader.java>`, :doc:`Supported Metadata Fields </metadata/MetamorphTiffReader>`)
 
-Freely Available Software:
 
-- `Leica LCS Lite <ftp://ftp.llt.de/softlib/LCSLite/LCSLite2611537.exe>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- a few Metamorph 7.5 TIFF datasets
+* a few Metamorph 7.5 TIFF datasets
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -49,12 +43,5 @@ Presence: |Fair|
 
 Utility: |Good|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`MetamorphTiffReader.java`
-
-Notes:
 
 

@@ -4,37 +4,31 @@
 SimplePCI & HCImage
 ===============================================================================
 
-Extensions: .cxd 
+Extensions: .cxd
 
-Developer: `Compix <http://www.cimaging.net/>`_
+Developer: `Compix <http://hcimage.com>`_
 
 
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: PCIReader (:bfreader:`Source Code <PCIReader.java>`, :doc:`Supported Metadata Fields </metadata/PCIReader>`)
 
-Freely Available Software:
 
-- `QuickTime Player <http://www.apple.com/quicktime/download/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- several SimplePCI files
+* several SimplePCI files
 
 We would like to have:
 
-- more SimplePCI TIFF datasets
 
 **Ratings**
 
@@ -49,17 +43,11 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`PCIReader.java`
-
-Notes:
 
 
 Bio-Formats uses a modified version of the `Apache Jakarta 
 POI library <http://jakarta.apache.org/poi/>`_ to read CXD files. 
 
 .. seealso:: 
-  `SimplePCI software overview <http://www.cimaging.net/simplepci.htm>`_
+  `SimplePCI software overview <http://hcimage.com/simple-pci-legacy/>`_

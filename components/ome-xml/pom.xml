@@ -6,9 +6,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>loci</groupId>
-    <artifactId>pom-scifio</artifactId>
-    <version>4.5-SNAPSHOT</version>
+    <groupId>ome</groupId>
+    <artifactId>pom-bio-formats</artifactId>
+    <version>5.2.0-SNAPSHOT</version>
     <relativePath>../..</relativePath>
   </parent>
 
@@ -16,54 +16,133 @@
 
   <name>OME-XML Java library</name>
   <description>A library for working with OME-XML metadata structures.</description>
-  <url>http://ome-xml.org/wiki/OmeXmlJava</url>
+  <url>http://www.openmicroscopy.org/site/support/ome-model/ome-xml/java-library.html</url>
   <inceptionYear>2006</inceptionYear>
 
   <licenses>
     <license>
       <name>Simplified BSD License</name>
-      <url>${license.server}/ome-xml/license.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
 
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.5.10</version>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>formats-common</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <!-- NB: We want this, despite warning from dependency:analyze. -->
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.14</version>
-      <scope>test</scope>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.2</version>
+    </dependency>
+
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>5.12.1</version>
+      <version>${testng.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
-      <!-- NB: We want this, despite warning from dependency:analyze. -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.5.10</version>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logback.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
+  <properties>
+    <project.rootdir>${basedir}/../..</project.rootdir>
+    <xsdfu.script>../xsd-fu/xsd-fu</xsdfu.script>
+    <xsdfu.modelpath>${basedir}/target/generated-sources/xsd-fu</xsdfu.modelpath>
+    <xsdfu.metadatapath>${basedir}/target/generated-sources/xsd-fu</xsdfu.metadatapath>
+  </properties>
+
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <!-- Generate the OME model object classes -->
+          <execution>
+            <id>xsd-fu-java-classes</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>python</executable>
+              <arguments>
+                <argument>${xsdfu.script}</argument>
+                <argument>omexml_model_all</argument>
+                <argument>--output-directory=${xsdfu.modelpath}/</argument>
+                <argument>--print-generated</argument>
+                <argument>${project.rootdir}/${xsdfu.ome}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+          <!-- Generate the metadata interfaces -->
+          <execution>
+            <id>xsd-fu-metadata-store</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>python</executable>
+              <arguments>
+                <argument>${xsdfu.script}</argument>
+                <argument>omexml_metadata_all</argument>
+                <argument>--output-directory=${xsdfu.metadatapath}/</argument>
+                <argument>--print-generated</argument>
+                <argument>${project.rootdir}/${xsdfu.ome}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>target/generated-sources/xsd-fu</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
             <manifest>
-              <mainClass>ome.xml.About</mainClass>
               <packageName>ome.xml</packageName>
             </manifest>
           </archive>
@@ -73,15 +152,18 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>test/ome/xml/utests/testng.xml</suiteXmlFile>
+            <suiteXmlFile>test/ome/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
+          <additionalClasspathElements>
+            <additionalClasspathElement>${basedir}/../../ant/</additionalClasspathElement>
+          </additionalClasspathElements>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <configuration>
-          <licenseName>ome-xml</licenseName>
+          <licenseName>bsd_2</licenseName>
           <organizationName>Open Microscopy Environment:
   - Massachusetts Institute of Technology
   - National Institutes of Health
@@ -92,6 +174,51 @@
         </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <versionRange>[1.2.1,)</versionRange>
+                    <goals>
+                      <goal>exec</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute>
+                      <runOnIncremental>false</runOnIncremental>
+                    </execute>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>
+                      build-helper-maven-plugin
+                    </artifactId>
+                    <versionRange>[1.4,)</versionRange>
+                    <goals>
+                      <goal>add-source</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <developers>
@@ -130,7 +257,7 @@
     <developer>
       <id>melissa</id>
       <name>Melissa Linkert</name>
-      <email>melissa.linkert@glencoesoftware.com</email>
+      <email>melissa@glencoesoftware.com</email>
       <url>http://www.openmicroscopy.org/site/about/development-teams/glencoe-software</url>
       <organization>Glencoe Software</organization>
       <organizationUrl>http://glencoesoftware.com/</organizationUrl>
@@ -148,13 +275,40 @@
   <!-- NB: for project parent, in case of partial checkout -->
   <repositories>
     <repository>
-      <id>imagej.releases</id>
-      <url>http://maven.imagej.net/content/repositories/releases</url>
+      <id>ome.experimental</id>
+      <url>http://artifacts.openmicroscopy.org/artifactory/ome.experimental</url>
     </repository>
     <repository>
-      <id>imagej.snapshots</id>
-      <url>http://maven.imagej.net/content/repositories/snapshots</url>
+      <id>ome.releases</id>
+      <url>http://artifacts.openmicroscopy.org/artifactory/ome.releases</url>
     </repository>
   </repositories>
+
+  <profiles>
+    <profile>
+      <id>latest-build</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <repositories>
+        <repository>
+          <id>ome.snapshots</id>
+          <url>http://artifacts.openmicroscopy.org/artifactory/ome.snapshots</url>
+        </repository>
+      </repositories>
+    </profile>
+
+    <profile>
+      <id>merge-build</id>
+
+      <repositories>
+        <repository>
+          <id>ome.unstable</id>
+          <url>http://artifacts.openmicroscopy.org/artifactory/ome.unstable</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 
 </project>

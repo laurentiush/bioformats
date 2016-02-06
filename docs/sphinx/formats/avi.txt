@@ -4,7 +4,7 @@
 AVI (Audio Video Interleave)
 ===============================================================================
 
-Extensions: .avi 
+Extensions: .avi
 
 Developer: `Microsoft <http://www.microsoft.com/>`_
 
@@ -12,13 +12,15 @@ Developer: `Microsoft <http://www.microsoft.com/>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |yes|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: AVIReader (:bsd-reader:`Source Code <AVIReader.java>`, :doc:`Supported Metadata Fields </metadata/AVIReader>`)
+
+Writer: AVIWriter (:bsd-writer:`Source Code <AVIWriter.java>`)
 
 Freely Available Software:
 
@@ -28,14 +30,15 @@ Freely Available Software:
 
 We currently have:
 
-- several AVI datasets
+* several AVI datasets
 
 We would like to have:
 
-- more AVI datasets, including: 
--   #. files with audio tracks and/or multiple video tracks 
--   #. files compressed with a common unsupported codec 
--   #. 2+ GB files
+* more AVI datasets, including: 
+
+  * files with audio tracks and/or multiple video tracks 
+  * files compressed with a common unsupported codec 
+  * 2+ GB files
 
 **Ratings**
 
@@ -50,21 +53,16 @@ Presence: |Outstanding|
 
 Utility: |Poor|
 
-
 **Additional Information**
 
 
-Source Code: :scifioreader:`AVIReader.java`
+* Bio-Formats can save image stacks as AVI (uncompressed). 
+* The following codecs are supported for reading: 
 
-Notes:
-
-
-- Bio-Formats can save image stacks as AVI (uncompressed). 
-- The following codecs are supported for reading: 
-  #. Microsoft Run-Length Encoding (MSRLE) 
-  #. Microsoft Video (MSV1) 
-  #. Raw (uncompressed) 
-  #. JPEG 
+  * Microsoft Run-Length Encoding (MSRLE) 
+  * Microsoft Video (MSV1) 
+  * Raw (uncompressed) 
+  * JPEG 
 
 .. seealso:: 
   `AVI RIFF File Reference <http://msdn2.microsoft.com/en-us/library/ms779636.aspx>`_ 

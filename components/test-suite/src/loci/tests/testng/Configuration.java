@@ -2,7 +2,7 @@
  * #%L
  * OME Bio-Formats manual and automated test suite.
  * %%
- * Copyright (C) 2006 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2006 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 import loci.common.Constants;
+import loci.common.DataTools;
 import loci.common.IniList;
 import loci.common.IniParser;
 import loci.common.IniTable;
@@ -46,11 +47,13 @@ import loci.formats.meta.IMetadata;
 
 import ome.xml.model.primitives.PositiveInteger;
 import ome.xml.model.primitives.PositiveFloat;
+import ome.xml.model.primitives.Timestamp;
+
+import ome.units.quantity.Length;
+import ome.units.quantity.Time;
+import ome.units.UNITS;
 
 /**
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/test-suite/src/loci/tests/testng/Configuration.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/test-suite/src/loci/tests/testng/Configuration.java;hb=HEAD">Gitweb</a></dd></dl>
  */
 public class Configuration {
 
@@ -83,21 +86,35 @@ public class Configuration {
   private static final String TILE_MD5 = "Tile_MD5";
   private static final String TILE_ALTERNATE_MD5 = "Tile_Alternate_MD5";
   private static final String PHYSICAL_SIZE_X = "PhysicalSizeX";
+  private static final String PHYSICAL_SIZE_X_UNIT = "PhysicalSizeXUnit";
   private static final String PHYSICAL_SIZE_Y = "PhysicalSizeY";
+  private static final String PHYSICAL_SIZE_Y_UNIT = "PhysicalSizeYUnit";
   private static final String PHYSICAL_SIZE_Z = "PhysicalSizeZ";
+  private static final String PHYSICAL_SIZE_Z_UNIT = "PhysicalSizeZUnit";
   private static final String TIME_INCREMENT = "TimeIncrement";
+  private static final String TIME_INCREMENT_UNIT = "TimeIncrementUnit";
   private static final String LIGHT_SOURCE = "LightSource_";
   private static final String CHANNEL_NAME = "ChannelName_";
   private static final String EXPOSURE_TIME = "ExposureTime_";
+  private static final String EXPOSURE_TIME_UNIT = "ExposureTimeUnit_";
   private static final String EMISSION_WAVELENGTH = "EmissionWavelength_";
+  private static final String EMISSION_WAVELENGTH_UNIT = "EmissionWavelengthUnit_";
   private static final String EXCITATION_WAVELENGTH = "ExcitationWavelength_";
+  private static final String EXCITATION_WAVELENGTH_UNIT = "ExcitationWavelengthUnit_";
   private static final String DETECTOR = "Detector_";
   private static final String NAME = "Name";
   private static final String DESCRIPTION = "Description";
   private static final String SERIES_COUNT = "series_count";
   private static final String CHANNEL_COUNT = "channel_count";
   private static final String DATE = "Date";
-
+  private static final String DELTA_T = "DeltaT_";
+  private static final String X_POSITION = "PositionX_";
+  private static final String X_POSITION_UNIT = "PositionXUnit_";
+  private static final String Y_POSITION = "PositionY_";
+  private static final String Y_POSITION_UNIT = "PositionYUnit_";
+  private static final String Z_POSITION = "PositionZ_";
+  private static final String Z_POSITION_UNIT = "PositionZUnit_";
+  
   // -- Fields --
 
   private String dataFile;
@@ -117,7 +134,6 @@ public class Configuration {
       new FileInputStream(this.configFile), Constants.ENCODING));
     IniParser parser = new IniParser();
     parser.setCommentDelimiter(null);
-    parser.setBackslashContinuesLine(false);
     ini = parser.parseINI(reader);
     pruneINI();
   }
@@ -234,39 +250,47 @@ public class Configuration {
     return currentTable.get(TILE_ALTERNATE_MD5);
   }
 
-  public Double getPhysicalSizeX() {
+  public Length getPhysicalSizeX() {
     String physicalSize = currentTable.get(PHYSICAL_SIZE_X);
-    if (physicalSize == null) return null;
+    String sizeXUnits = currentTable.get(PHYSICAL_SIZE_X_UNIT);
     try {
-      return new Double(physicalSize);
+      return physicalSize == null ? null : FormatTools.getPhysicalSize(new Double(physicalSize), sizeXUnits);
     }
-    catch (NumberFormatException e) { }
-    return null;
+    catch (NumberFormatException e) {
+      return null;
+    }
   }
 
-  public Double getPhysicalSizeY() {
+  public Length getPhysicalSizeY() {
     String physicalSize = currentTable.get(PHYSICAL_SIZE_Y);
-    if (physicalSize == null) return null;
+    String sizeYUnits = currentTable.get(PHYSICAL_SIZE_Y_UNIT);
     try {
-      return new Double(physicalSize);
+      return physicalSize == null ? null : FormatTools.getPhysicalSize(new Double(physicalSize), sizeYUnits);
     }
     catch (NumberFormatException e) { }
     return null;
   }
 
-  public Double getPhysicalSizeZ() {
+  public Length getPhysicalSizeZ() {
     String physicalSize = currentTable.get(PHYSICAL_SIZE_Z);
-    if (physicalSize == null) return null;
+    String sizeZUnits = currentTable.get(PHYSICAL_SIZE_Z_UNIT);
     try {
-      return new Double(physicalSize);
+      return physicalSize == null ? null : FormatTools.getPhysicalSize(new Double(physicalSize), sizeZUnits);
     }
-    catch (NumberFormatException e) { }
-    return null;
+    catch (NumberFormatException e) { 
+      return null;
+    } 
   }
 
-  public Double getTimeIncrement() {
-    String physicalSize = currentTable.get(TIME_INCREMENT);
-    return physicalSize == null ? null : new Double(physicalSize);
+  public Time getTimeIncrement() {
+    String timeIncrement = currentTable.get(TIME_INCREMENT);
+    String timeIncrementUnits = currentTable.get(TIME_INCREMENT_UNIT);
+    try {
+      return timeIncrement == null ? null : FormatTools.getTime(new Double(timeIncrement), timeIncrementUnits);
+    }
+    catch (NumberFormatException e) { 
+      return null; 
+    }
   }
 
   public int getChannelCount() {
@@ -285,19 +309,69 @@ public class Configuration {
     return currentTable.containsKey(EXPOSURE_TIME + channel);
   }
 
-  public Double getExposureTime(int channel) {
+  public Time getExposureTime(int channel) {
     String exposure = currentTable.get(EXPOSURE_TIME + channel);
-    return exposure == null ? null : new Double(exposure);
+    String exposureUnits = currentTable.get(EXPOSURE_TIME_UNIT + channel);
+    try {
+      return exposure == null ? null : FormatTools.getTime(new Double(exposure), exposureUnits);
+    }
+    catch (NumberFormatException e) { 
+      return null; 
+    }
   }
 
-  public Integer getEmissionWavelength(int channel) {
+  public Double getDeltaT(int plane) {
+    String deltaT = currentTable.get(DELTA_T + plane);
+    return deltaT == null ? null : new Double(deltaT);
+  }
+
+  public Double getPositionX(int plane) {
+    String pos = currentTable.get(X_POSITION + plane);
+    return pos == null ? null : new Double(pos);
+  }
+  
+  public String getPositionXUnit(int plane) {
+    return currentTable.get(X_POSITION_UNIT + plane);
+  }
+
+  public Double getPositionY(int plane) {
+    String pos = currentTable.get(Y_POSITION + plane);
+    return pos == null ? null : new Double(pos);
+  }
+  
+  public String getPositionYUnit(int plane) {
+    return currentTable.get(Y_POSITION_UNIT + plane);
+  }
+
+  public Double getPositionZ(int plane) {
+    String pos = currentTable.get(Z_POSITION + plane);
+    return pos == null ? null : new Double(pos);
+  }
+
+  public String getPositionZUnit(int plane) {
+    return currentTable.get(Z_POSITION_UNIT + plane);
+  }
+  
+  public Length getEmissionWavelength(int channel) {
     String wavelength = currentTable.get(EMISSION_WAVELENGTH + channel);
-    return wavelength == null ? null : new Integer(wavelength);
+    String emissionUnits = currentTable.get(EMISSION_WAVELENGTH_UNIT + channel);
+    try {
+      return wavelength == null ? null : FormatTools.getWavelength(new Double(wavelength), emissionUnits);
+    }
+    catch (NumberFormatException e) { 
+      return null;
+    } 
   }
 
-  public Integer getExcitationWavelength(int channel) {
+  public Length getExcitationWavelength(int channel) {
     String wavelength = currentTable.get(EXCITATION_WAVELENGTH + channel);
-    return wavelength == null ? null : new Integer(wavelength);
+    String excitationUnits = currentTable.get(EXCITATION_WAVELENGTH_UNIT + channel);
+    try {
+      return wavelength == null ? null : FormatTools.getWavelength(new Double(wavelength), excitationUnits);
+    }
+    catch (NumberFormatException e) { 
+      return null;
+    } 
   }
 
   public String getDetector(int channel) {
@@ -327,7 +401,7 @@ public class Configuration {
 
   public void saveToFile() throws IOException {
     IniWriter writer = new IniWriter();
-    writer.saveINI(ini, configFile);
+    writer.saveINI(ini, configFile, true, true);
   }
 
   public IniList getINI() {
@@ -336,6 +410,7 @@ public class Configuration {
 
   // -- Object API methods --
 
+  @Override
   public boolean equals(Object o) {
     if (!(o instanceof Configuration)) return false;
 
@@ -343,6 +418,7 @@ public class Configuration {
     return this.getINI().equals(thatConfig.getINI());
   }
 
+  @Override
   public int hashCode() {
     return this.getINI().hashCode();
   }
@@ -421,8 +497,15 @@ public class Configuration {
       seriesTable.put(CHANNEL_COUNT,
         String.valueOf(retrieve.getChannelCount(series)));
 
-      planeSize = (long) FormatTools.getPlaneSize(reader);
-      canOpenImages = planeSize > 0 && TestTools.canFitInMemory(planeSize);
+      try {
+        planeSize = DataTools.safeMultiply32(reader.getSizeX(),
+          reader.getSizeY(), reader.getEffectiveSizeC(),
+          FormatTools.getBytesPerPixel(reader.getPixelType()));
+        canOpenImages = planeSize > 0 && TestTools.canFitInMemory(planeSize);
+      }
+      catch (IllegalArgumentException e) {
+        canOpenImages = false;
+      }
 
       if (canOpenImages) {
         try {
@@ -454,26 +537,33 @@ public class Configuration {
       seriesTable.put(NAME, retrieve.getImageName(series));
       seriesTable.put(DESCRIPTION, retrieve.getImageDescription(series));
 
-      PositiveFloat physicalX = retrieve.getPixelsPhysicalSizeX(series);
+      Length physicalX = retrieve.getPixelsPhysicalSizeX(series);
       if (physicalX != null) {
-        seriesTable.put(PHYSICAL_SIZE_X, physicalX.toString());
+        seriesTable.put(PHYSICAL_SIZE_X, physicalX.value().toString());
+        seriesTable.put(PHYSICAL_SIZE_X_UNIT, physicalX.unit().getSymbol());
       }
-      PositiveFloat physicalY = retrieve.getPixelsPhysicalSizeY(series);
+      Length physicalY = retrieve.getPixelsPhysicalSizeY(series);
       if (physicalY != null) {
-        seriesTable.put(PHYSICAL_SIZE_Y, physicalY.toString());
+        seriesTable.put(PHYSICAL_SIZE_Y, physicalY.value().toString());
+        seriesTable.put(PHYSICAL_SIZE_Y_UNIT, physicalY.unit().getSymbol());
       }
-      PositiveFloat physicalZ = retrieve.getPixelsPhysicalSizeZ(series);
+      Length physicalZ = retrieve.getPixelsPhysicalSizeZ(series);
       if (physicalZ != null) {
-        seriesTable.put(PHYSICAL_SIZE_Z, physicalZ.toString());
+        seriesTable.put(PHYSICAL_SIZE_Z, physicalZ.value().toString());
+        seriesTable.put(PHYSICAL_SIZE_Z_UNIT, physicalZ.unit().getSymbol());
       }
-      Double timeIncrement = retrieve.getPixelsTimeIncrement(series);
+      Time timeIncrement = retrieve.getPixelsTimeIncrement(series);
       if (timeIncrement != null) {
-        seriesTable.put(TIME_INCREMENT, timeIncrement.toString());
+        seriesTable.put(TIME_INCREMENT, timeIncrement.value().toString());
+        seriesTable.put(TIME_INCREMENT_UNIT, timeIncrement.unit().getSymbol());
       }
 
-      String date = retrieve.getImageAcquisitionDate(series).getValue();
-      if (date != null) {
-        seriesTable.put(DATE, date);
+      Timestamp acquisition = retrieve.getImageAcquisitionDate(series);
+      if (acquisition != null) {
+        String date = acquisition.getValue();
+        if (date != null) {
+          seriesTable.put(DATE, date);
+        }
       }
 
       for (int c=0; c<retrieve.getChannelCount(series); c++) {
@@ -488,26 +578,56 @@ public class Configuration {
           int plane = reader.getIndex(0, c, 0);
           if (plane < retrieve.getPlaneCount(series)) {
             seriesTable.put(EXPOSURE_TIME + c,
-              retrieve.getPlaneExposureTime(series, plane).toString());
+              retrieve.getPlaneExposureTime(series, plane).value().toString());
+            seriesTable.put(EXPOSURE_TIME_UNIT + c,
+              retrieve.getPlaneExposureTime(series, plane).unit().getSymbol());
           }
         }
         catch (NullPointerException e) { }
 
-        PositiveInteger emWavelength =
-          retrieve.getChannelEmissionWavelength(series, c);
+        Length emWavelength = retrieve.getChannelEmissionWavelength(series, c);
         if (emWavelength != null) {
-          seriesTable.put(EMISSION_WAVELENGTH + c, emWavelength.toString());
+          seriesTable.put(EMISSION_WAVELENGTH + c, emWavelength.value().toString());
+          seriesTable.put(EMISSION_WAVELENGTH_UNIT + c, emWavelength.unit().getSymbol());
         }
-        PositiveInteger exWavelength =
+        Length exWavelength =
           retrieve.getChannelExcitationWavelength(series, c);
         if (exWavelength != null) {
-          seriesTable.put(EXCITATION_WAVELENGTH + c, exWavelength.toString());
+          seriesTable.put(EXCITATION_WAVELENGTH + c, exWavelength.value().toString());
+          seriesTable.put(EXCITATION_WAVELENGTH_UNIT + c, exWavelength.unit().getSymbol());
         }
         try {
           seriesTable.put(DETECTOR + c,
             retrieve.getDetectorSettingsID(series, c));
         }
         catch (NullPointerException e) { }
+      }
+
+      for (int p=0; p<reader.getImageCount(); p++) {
+        try {
+          Time deltaT = retrieve.getPlaneDeltaT(series, p);
+          if (deltaT != null) {
+            seriesTable.put(DELTA_T + p, deltaT.value(UNITS.S).toString());
+          }
+          Length xPos = retrieve.getPlanePositionX(series, p);
+          if (xPos != null) {
+            seriesTable.put(X_POSITION + p, xPos.value().toString());
+            seriesTable.put(X_POSITION_UNIT + p, xPos.unit().getSymbol());
+          }
+          Length yPos = retrieve.getPlanePositionY(series, p);
+          if (yPos != null) {
+            seriesTable.put(Y_POSITION + p, yPos.value().toString());
+            seriesTable.put(Y_POSITION_UNIT + p, yPos.unit().getSymbol());
+          }
+          Length zPos = retrieve.getPlanePositionZ(series, p);
+          if (zPos != null) {
+            seriesTable.put(Z_POSITION + p, zPos.value().toString());
+            seriesTable.put(Z_POSITION_UNIT + p, zPos.unit().getSymbol());
+          }
+        }
+        catch (IndexOutOfBoundsException e) {
+          // only happens if no Plane elements were populated
+        }
       }
 
       ini.add(seriesTable);
@@ -536,5 +656,4 @@ public class Configuration {
     }
     ini = newIni;
   }
-
 }

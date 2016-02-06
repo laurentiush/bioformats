@@ -4,7 +4,7 @@
 Seiko
 ===============================================================================
 
-Extensions: .xqd, .xqf 
+Extensions: .xqd, .xqf
 
 
 Owner: `Seiko <http://www.seiko.co.jp/en/index.php>`_
@@ -12,31 +12,26 @@ Owner: `Seiko <http://www.seiko.co.jp/en/index.php>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: SeikoReader (:bfreader:`Source Code <SeikoReader.java>`, :doc:`Supported Metadata Fields </metadata/SeikoReader>`)
 
-Freely Available Software:
 
-- `QuickTime Player <http://www.apple.com/quicktime/download/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- Pascal code that can read Seiko files (from ImageSXM) 
-- a few Seiko files
+* Pascal code that can read Seiko files (from ImageSXM) 
+* a few Seiko files
 
 We would like to have:
 
-- an official specification document 
-- more Seiko files
+* an official specification document 
+* more Seiko files
 
 **Ratings**
 
@@ -51,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`SeikoReader.java`
-
-Notes:
 
 

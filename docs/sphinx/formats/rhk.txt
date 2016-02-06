@@ -4,7 +4,7 @@
 RHK
 ===============================================================================
 
-Extensions: .sm2, .sm3 
+Extensions: .sm2, .sm3
 
 
 Owner: `RHK Technologies <http://www.rhk-tech.com>`_
@@ -12,31 +12,26 @@ Owner: `RHK Technologies <http://www.rhk-tech.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: RHKReader (:bfreader:`Source Code <RHKReader.java>`, :doc:`Supported Metadata Fields </metadata/RHKReader>`)
 
-Freely Available Software:
 
-- `QuickTime Player <http://www.apple.com/quicktime/download/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- Pascal code that can read RHK files (from ImageSXM) 
-- a few RHK files
+* Pascal code that can read RHK files (from ImageSXM) 
+* a few RHK files
 
 We would like to have:
 
-- an official specification document 
-- more RHK files
+* an official specification document 
+* more RHK files
 
 **Ratings**
 
@@ -51,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`RHKReader.java`
-
-Notes:
 
 

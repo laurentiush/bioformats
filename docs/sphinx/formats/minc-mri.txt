@@ -4,7 +4,7 @@
 MINC MRI
 ===============================================================================
 
-Extensions: .mnc 
+Extensions: .mnc
 
 Developer: `McGill University <http://www.bic.mni.mcgill.ca/ServicesSoftware/MINC>`_
 
@@ -12,29 +12,26 @@ Developer: `McGill University <http://www.bic.mni.mcgill.ca/ServicesSoftware/MIN
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MINCReader (:bfreader:`Source Code <MINCReader.java>`, :doc:`Supported Metadata Fields </metadata/MINCReader>`)
+
 
 Freely Available Software:
 
 - `MINC <http://www.bic.mni.mcgill.ca/ServicesSoftware/MINC>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- a few MINC files
+* a few MINC files
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -49,12 +46,5 @@ Presence: |Good|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`MINCReader.java`
-
-Notes:
 
 

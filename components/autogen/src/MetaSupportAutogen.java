@@ -2,7 +2,7 @@
  * #%L
  * Bio-Formats autogen package for programmatically generating source code.
  * %%
- * Copyright (C) 2007 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2007 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -26,6 +26,10 @@
 import java.io.File;
 import java.io.IOException;
 
+import loci.common.IniList;
+import loci.common.IniParser;
+import loci.common.IniTable;
+
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
@@ -33,24 +37,22 @@ import org.apache.velocity.app.VelocityEngine;
  * Automatically generates a report on supported metadata fields
  * for each file format reader in Bio-Formats.
  *
- * Uses data from the meta-support.txt file.
+ * Uses data from the meta-support.txt and format-pages.txt files.
  *
  * TODO - Add support for group reporting using meta-groups.txt.
- *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/autogen/src/MetaSupportAutogen.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/autogen/src/MetaSupportAutogen.java;hb=HEAD">Gitweb</a></dd></dl>
  *
  * @author Curtis Rueden ctrueden at wisc.edu
  */
 public class MetaSupportAutogen {
+
+  private static final String FORMAT_PAGES = "format-pages.txt";
 
   // -- Main method --
 
   public static void main(String[] args) throws Exception {
     if (args.length == 0) {
       System.out.println("Usage: java MetaSupportAutogen ome-xml-version");
-      System.out.println("    E.g.: java MetaSupportAutogen 2008-02");
+      System.out.println("    E.g.: java MetaSupportAutogen 2012-06");
       System.exit(1);
     }
     String version = args[0];
@@ -79,15 +81,29 @@ public class MetaSupportAutogen {
     MetaSupportList supportList = new MetaSupportList(version);
     context.put("q", supportList);
 
+    // retrieve the table of format page names
+    IniParser parser = new IniParser();
+    parser.setCommentDelimiter(null);
+    IniList data = parser.parseINI(FORMAT_PAGES, MetaSupportAutogen.class);
+
+    for (String handler : supportList.handlers()) {
+      supportList.setHandler(handler);
+      supportList.setPageName("metadata/" + handler);
+    }
+
     // generate master table of metadata properties
     VelocityTools.processTemplate(ve, context, "doc/meta-summary.vm",
-      "doc/meta-summary.html");
+      "../../docs/sphinx/metadata-summary.txt");
 
     // generate metadata property support documentation for each handler
     for (String handler : supportList.handlers()) {
       supportList.setHandler(handler);
-      VelocityTools.processTemplate(ve, context, "doc/MetaSupportWikiPage.vm",
-        "doc/meta/" + handler + ".txt");
+
+      String pagename = supportList.getPageName();
+      if (pagename != null) {
+        VelocityTools.processTemplate(ve, context, "doc/MetadataSupport.vm",
+          "../../docs/sphinx/" + pagename + ".txt");
+      }
     }
   }
 

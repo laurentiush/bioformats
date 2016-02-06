@@ -2,7 +2,7 @@
  * #%L
  * Bio-Formats autogen package for programmatically generating source code.
  * %%
- * Copyright (C) 2007 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2007 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -46,10 +46,6 @@ import org.apache.velocity.app.VelocityEngine;
 
 /**
  *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/autogen/src/FormatPageAutogen.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/autogen/src/FormatPageAutogen.java;hb=HEAD">Gitweb</a></dd></dl>
- *
  * @author Melissa Linkert melissa at glencoesoftware.com
  */
 public class FormatPageAutogen {
@@ -85,25 +81,26 @@ public class FormatPageAutogen {
     }
 
     VelocityEngine engine = VelocityTools.createEngine();
-    VelocityContext context = VelocityTools.createContext();
 
     for (IniTable table : data) {
+      VelocityContext context = VelocityTools.createContext();
+
       String format = table.get(IniTable.HEADER_KEY);
       context.put("format", format);
       if (table.containsKey("extensions")) {
         context.put("extensions", table.get("extensions"));
       }
-      if (table.containsKey("unindexedExtensions")) {
-        context.put("unindexedExtensions",
-          ", " + table.get("unindexedExtensions"));
+      if (table.containsKey("indexExtensions")) {
+        context.put("indexExtensions", table.get("indexExtensions"));
       }
-      else {
-        context.put("unindexedExtensions", "");
+      else if (table.containsKey("extensions")){
+        context.put("indexExtensions", table.get("extensions"));
       }
       context.put("owner", table.get("owner"));
       context.put("developer", table.get("developer"));
-      context.put("scifio", table.get("scifio"));
+      context.put("bsd", table.get("bsd"));
       context.put("export", table.get("export"));
+      context.put("pyramid", table.get("pyramid"));
 
       if (table.containsKey("versions")) {
         context.put("versions", table.get("versions"));
@@ -119,12 +116,13 @@ public class FormatPageAutogen {
       context.put("utilityRating", table.get("utilityRating"));
       context.put("reader", table.get("reader"));
       context.put("writer", table.get("writer"));
+      context.put("mif", table.get("mif"));
       context.put("notes", table.get("notes"));
       context.put("privateSpecification", table.get("privateSpecification"));
       context.put("readerextlink",
-        table.get("scifio").equals("no") ? "bfreader" : "scifioreader");
+        table.get("bsd").equals("no") ? "bfreader" : "bsd-reader");
       context.put("writerextlink",
-        table.get("scifio").equals("no") ? "bfwriter" : "scifiowriter");
+        table.get("bsd").equals("no") ? "bfwriter" : "bsd-writer");
 
       if (table.containsKey("software")) {
         String[] software = table.get("software").split("\n");
@@ -156,6 +154,18 @@ public class FormatPageAutogen {
         context.put("reader", reader);
       }
       String filename = getPageName(format, table.get("pagename"));
+
+
+      if (table.containsKey("metadataPage")) {
+        String page = table.get("metadataPage");
+        if (page.length() > 0) {
+          context.put("metadataPage", page.split(", "));
+        }
+      } else {
+        String[] page = {filename.substring(filename.indexOf(File.separator) + 1) + "-metadata"};
+        context.put("metadataPage", page);
+      }
+
       VelocityTools.processTemplate(engine, context, TEMPLATE,
         "../../docs/sphinx/" + filename + ".txt");
     }
@@ -182,6 +192,7 @@ public class FormatPageAutogen {
     }
 
     Arrays.sort(sortedTable, new Comparator<IniTable>() {
+      @Override
       public int compare(IniTable t1, IniTable t2) {
         String page1 = t1.get("pagename");
         String page2 = t2.get("pagename");
@@ -199,7 +210,7 @@ public class FormatPageAutogen {
 
   // -- Helper methods --
 
-  private String getPageName(String format, String pagename) {
+  protected static String getPageName(String format, String pagename) {
     String realPageName = pagename;
     if (realPageName == null) {
       realPageName = format.replaceAll("/", "");

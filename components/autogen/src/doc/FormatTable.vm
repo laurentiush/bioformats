@@ -1,33 +1,60 @@
 Supported Formats
 -----------------
 
-.. tabularcolumns:: |p{3cm}|p{2cm}|c|c|c|c|c|c|c|
+:term:`Ratings legend and definitions`
+
+.. only:: html
+
+    You can sort this table by clicking on any of the headings.
+
+.. tabularcolumns:: |p{3cm}|p{2cm}|c|c|c|c|c|c|c|c|c|
 
 .. list-table::
+   :class: sortable
    :header-rows: 1
-   :widths: 30, 20, 10, 10, 10, 10, 10, 10, 10
+   :widths: 30, 20, 2, 2, 2, 2, 2, 2, 2, 5, 3
 
    *
      - Format
      - Extensions
-     - :term:`Pixels`
-     - :term:`Metadata`
-     - :term:`Openness`
-     - :term:`Presence`
-     - :term:`Utility`
-     - :term:`Export`
-     - :term:`SCIFIO`
+     - .. image:: images/header-pixels.png
+     - .. image:: images/header-metadata.png
+     - .. image:: images/header-openness.png
+     - .. image:: images/header-presence.png
+     - .. image:: images/header-utility.png
+     - .. image:: images/header-export.png
+     - BSD
+     - Multiple Images
+     - Pyramid
 
 #foreach ($format in $formats)
 #set ($pagename = $format.get("pagename"))
-#set ($extensions = $format.get("extensions"))
+#if ($format.get("extensions"))
+  #set ($extensions = $format.get("extensions"))
+#else
+  #set ($extensions = "")
+#end
 #set ($pixels = $format.get("pixelsRating"))
 #set ($metadata = $format.get("metadataRating"))
 #set ($openness = $format.get("opennessRating"))
 #set ($presence = $format.get("presenceRating"))
 #set ($utility = $format.get("utilityRating"))
-#set ($export = $format.get("export"))
-#set ($scifio = $format.get("scifio"))
+#if ($format.get("writer"))
+  #set ($export = "yes")
+#else
+  #set ($export = "no")
+#end
+#set ($bsd = $format.get("bsd"))
+#if ($format.get("mif"))
+  #set ($mif = "yes")
+#else
+  #set ($mif = "no")
+#end
+#if ($format.get("pyramid"))
+  #set ($pyramid = "yes")
+#else
+  #set ($pyramid = "no")
+#end
    * - :doc:`$pagename`
      - $extensions
      - |$pixels|
@@ -36,12 +63,28 @@ Supported Formats
      - |$presence|
      - |$utility|
      - |$export|
-     - |$scifio|
+     - |$bsd|
+     - |$mif|
+     - |$pyramid|
 #end
 
 Bio-Formats currently supports **$count** formats
 
 .. glossary::
+    Ratings legend and definitions
+      +----------------+-----------------------+
+      +================+=======================+
+      | |Outstanding|  | Outstanding           |
+      +----------------+-----------------------+
+      | |Very good|    | Very good             |
+      +----------------+-----------------------+
+      | |Good|         | Good                  |
+      +----------------+-----------------------+
+      | |Fair|         | Fair                  |
+      +----------------+-----------------------+
+      | |Poor|         | Poor                  |
+      +----------------+-----------------------+
+
     Pixels
         Our estimation of Bio-Formats' ability to reliably extract complete 
         and accurate pixel values from files in that format. The better this 
@@ -78,11 +121,17 @@ Bio-Formats currently supports **$count** formats
         This indicates whether Bio-Formats is capable of writing the format 
         (Bio-Formats can read every format on this list).
 
-    SCIFIO 
-        This indicates whether format is supported by the
-        :doc:`SCIFIO <developers/scifio>` core library (See the license
-        section on the :doc:`Bio-Formats documentation <index>` page for why
-        this matters).
+    BSD
+        This indicates whether format is BSD-licensed.  By default,
+        format readers and writers are GPL-licensed.
+
+    Multiple Images
+        This indicates whether the format can store multiple Images (in OME-XML terminology)
+        or series (in Bio-Formats API terminology).
+
+    Pyramid
+        This indicates whether the format can store a single image at multiple resolutions,
+        typically referred to as an image pyramid.
 
 .. toctree::
     :maxdepth: 1

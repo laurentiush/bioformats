@@ -4,7 +4,7 @@
 JPEG
 ===============================================================================
 
-Extensions: .jpg 
+Extensions: .jpg
 
 Developer: `Independent JPEG Group <http://www.ijg.org/>`_
 
@@ -12,32 +12,26 @@ Developer: `Independent JPEG Group <http://www.ijg.org/>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |yes|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: JPEGReader (:bsd-reader:`Source Code <JPEGReader.java>`, :doc:`Supported Metadata Fields </metadata/JPEGReader>`)
 
-Freely Available Software:
+Writer: JPEGWriter (:bsd-writer:`Source Code <JPEGWriter.java>`)
 
-- `JJ2000 (JPEG 2000 library for Java) <http://code.google.com/p/jj2000/>`_
 
-Sample Datasets:
-
-- `Broad Bioimage Benchmark Collection <http://www.broadinstitute.org/bbbc/BBBC013/>`_
 
 We currently have:
 
-- a `JPEG specification document <http://www.w3.org/Graphics/JPEG/jfif3.pdf>`_ (v1.04, from 1992 September 1, in PDF) 
-- numerous JPEG datasets 
-- the ability to produce more datasets
+* a `JPEG specification document <http://www.w3.org/Graphics/JPEG/jfif3.pdf>`_ (v1.04, from 1992 September 1, in PDF) 
+* numerous JPEG datasets 
+* the ability to produce more datasets
 
 We would like to have:
 
-- an official specification document 
-- more JEOL files
 
 **Ratings**
 
@@ -52,18 +46,11 @@ Presence: |Outstanding|
 
 Utility: |Poor|
 
-
 **Additional Information**
 
 
-Source Code: :scifioreader:`JPEGReader.java`
-Source Code: :scifiowriter:`JPEGWriter.java`
-
-Notes:
-
-
 Bio-Formats can save individual planes as JPEG. 
-Bio-Formats uses the `Java Image I/O <http://java.sun.com/j2se/1.4.2/docs/guide/imageio/index.html>`_ API to read and write JPEG files. 
+Bio-Formats uses the `Java Image I/O <http://docs.oracle.com/javase/7/docs/technotes/guides/imageio/>`_ API to read and write JPEG files. 
 JPEG stands for "Joint Photographic Experts Group". 
 
 .. seealso:: 

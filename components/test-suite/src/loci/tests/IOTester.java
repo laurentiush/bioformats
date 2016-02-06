@@ -2,7 +2,7 @@
  * #%L
  * OME Bio-Formats manual and automated test suite.
  * %%
- * Copyright (C) 2006 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2006 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -31,20 +31,12 @@ import java.io.IOException;
 
 import loci.common.RandomAccessInputStream;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.PatternLayout;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * A class for testing {@link loci.common.RandomAccessInputStream}'s
  * efficiency in various cases.
- *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/test-suite/src/loci/tests/IOTester.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/test-suite/src/loci/tests/IOTester.java;hb=HEAD">Gitweb</a></dd></dl>
  *
  * @author Curtis Rueden ctrueden at wisc.edu
  */
@@ -59,9 +51,6 @@ public class IOTester {
   private static final String ALPHANUM =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 
-  private ConsoleAppender appender;
-  private PatternLayout originalLayout;
-
   public byte[] createData() {
     // create random test data
     byte[] data = new byte[SIZE];
@@ -75,7 +64,8 @@ public class IOTester {
     LOGGER.info("Generating data: {} ({}%) alphanumeric + {} ({}%) binary",
       new Object[] {middle, middlePercent, left, leftPercent});
 
-    appender.setLayout(new PatternLayout("%m"));
+    // TODO: This should use a specific instance like
+    // LOGGER2 = LoggerFactory.getLogger("IOTester.ALPHANUM")
     long progress = 0;
     for (int i=0; i<data.length; i++) {
       // print dots to indicate progress
@@ -99,7 +89,7 @@ public class IOTester {
         data[i] = (byte) TAG.charAt(i - middle);
       }
     }
-    appender.setLayout(originalLayout);
+    // END USE OF NEW LOGGER2
     LOGGER.info("");
 
     return data;
@@ -166,12 +156,6 @@ public class IOTester {
   }
 
   public void testIO() throws IOException {
-    org.apache.log4j.Logger root = org.apache.log4j.Logger.getRootLogger();
-    root.setLevel(Level.INFO);
-    originalLayout = new PatternLayout("%m%n");
-    appender = new ConsoleAppender(originalLayout);
-    root.addAppender(appender);
-
     String prefix = "IOTester";
     byte[] data = createData();
 

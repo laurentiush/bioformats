@@ -4,7 +4,7 @@
 Bio-Rad Gel
 ===============================================================================
 
-Extensions: .1sc 
+Extensions: .1sc
 
 
 Owner: `Bio-Rad <http://www.bio-rad.com>`_
@@ -12,29 +12,26 @@ Owner: `Bio-Rad <http://www.bio-rad.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: BioRadGelReader (:bfreader:`Source Code <BioRadGelReader.java>`, :doc:`Supported Metadata Fields </metadata/BioRadGelReader>`)
 
-Freely Available Software:
 
-- `AVI Reader plugin for ImageJ <http://rsb.info.nih.gov/ij/plugins/avi-reader.html>`_ 
-- `AVI Writer plugin for ImageJ <http://rsb.info.nih.gov/ij/plugins/avi.html>`_
 
 
 We currently have:
 
-- software that can read Bio-Rad Gel files 
-- several Bio-Rad Gel files
+* software that can read Bio-Rad Gel files 
+* several Bio-Rad Gel files
 
 We would like to have:
 
-- a Bio-Rad Gel specification 
-- more Bio-Rad Gel files
+* a Bio-Rad Gel specification 
+* more Bio-Rad Gel files
 
 **Ratings**
 
@@ -49,12 +46,5 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`BioRadGelReader.java`
-
-Notes:
 
 

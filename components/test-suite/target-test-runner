@@ -63,8 +63,8 @@ Options:
   --hudson      Prepares the TestNG XML for use by Hudson
 
 Examples:
-  %s -f ~/regular_test_files loci.tests.testng.OmeroOpenBytesTest ~/testimages/foo.tiff
-  find -name '*.tif' | %s -f - loci.tests.testng.OmeroOpenBytesTest
+  %s -f ~/regular_test_files loci.tests.testng.OpenBytesPerformanceTest ~/testimages/foo.tiff
+  find -name '*.tif' | %s -f - loci.tests.testng.OpenBytesPerformanceTest
 
 Report bugs to ome-devel@lists.openmicroscopy.org.uk""" % (error, cmd, cmd, cmd)
     sys.exit(2)
@@ -165,7 +165,8 @@ if __name__ == '__main__':
         pass
     classpath = "%s:./build/classes" % classpath
     for f in glob.glob("../../artifacts/*.jar"):
-        classpath += ":%s" % f
+        if not f.endswith("bioformats_package.jar") and not f.endswith("loci_tools.jar") and f.find("log4j") == -1:
+            classpath += ":%s" % f
 
     revision = None
     try:
@@ -175,11 +176,11 @@ if __name__ == '__main__':
 
     xml_file = create_testng_xml_file(test_class, targets, revision,
                                       hudson, thread_count, in_memory)
-    l4j_props = 'log4j-target-test-runner.properties'
-    l4j_props = os.path.join(os.path.dirname(__file__), l4j_props)
-    l4j_props = os.path.abspath(l4j_props)
-    l4j_props = '-Dlog4j.configuration=file:///%s' % l4j_props
-    cmd = 'java %s -cp "%s" %s %s %s' % (JAVA_ARGS, classpath, l4j_props, \
+    log_props = 'logback-target-test-runner.xml'
+    log_props = os.path.join(os.path.dirname(__file__), log_props)
+    log_props = os.path.abspath(log_props)
+    log_props = '-Dlogback.configurationFile=file:///%s' % log_props
+    cmd = 'java %s -cp "%s" %s %s %s' % (JAVA_ARGS, classpath, log_props, \
                                          START_CLASS, xml_file.name)
     print cmd
     os.system(cmd)

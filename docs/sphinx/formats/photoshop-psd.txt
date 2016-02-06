@@ -4,7 +4,7 @@
 Adobe Photoshop PSD
 ===============================================================================
 
-Extensions: .psd 
+Extensions: .psd
 
 Developer: `Adobe <http://www.adobe.com/>`_
 
@@ -12,24 +12,25 @@ Developer: `Adobe <http://www.adobe.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 1.0
 
-Supported Metadata Fields:
+Reader: PSDReader (:bfreader:`Source Code <PSDReader.java>`, :doc:`Supported Metadata Fields </metadata/PSDReader>`)
+
 
 
 
 We currently have:
 
-- a PSD specification document (v3.0.4, 16 July 1995) 
-- a few PSD files
+* a PSD specification document (v3.0.4, 16 July 1995) 
+* a few PSD files
 
 We would like to have:
 
-- more PSD files
+* more PSD files
 
 **Ratings**
 
@@ -44,12 +45,5 @@ Presence: |Good|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`PSDReader.java`
-
-Notes:
 
 

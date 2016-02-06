@@ -4,7 +4,7 @@
 Micro-Manager
 ===============================================================================
 
-Extensions: .tif, .txt, .xml 
+Extensions: .tif, .txt, .xml
 
 Developer: `Vale Lab <http://valelab.ucsf.edu/>`_
 
@@ -12,13 +12,14 @@ Developer: `Vale Lab <http://valelab.ucsf.edu/>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MicromanagerReader (:bsd-reader:`Source Code <MicromanagerReader.java>`, :doc:`Supported Metadata Fields </metadata/MicromanagerReader>`)
+
 
 Freely Available Software:
 
@@ -27,11 +28,10 @@ Freely Available Software:
 
 We currently have:
 
-- many Micro-manager datasets
+* many Micro-manager datasets
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -46,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Good|
 
-
-**Additional Information**
-
-
-Source Code: :scifioreader:`MicromanagerReader.java`
-
-Notes:
 
 

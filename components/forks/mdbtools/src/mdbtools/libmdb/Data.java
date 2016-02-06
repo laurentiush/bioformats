@@ -2,7 +2,7 @@
  * #%L
  * Fork of MDB Tools (Java port).
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -772,6 +772,9 @@ public class Data
         if(file.mdb_read_pg(mdb, lval_pg) != fmt.pg_size)
         {
           /* Failed to read */
+          if (memo_len < fmt.pg_size) {
+            file.mdb_swap_pgbuf(mdb);
+          }
           return text;
         }
         if (memo_row != 0)

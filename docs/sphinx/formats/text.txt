@@ -4,38 +4,29 @@
 Text
 ===============================================================================
 
-Extensions: .txt 
+Extensions: .txt
 
 
 
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: TextReader (:bsd-reader:`Source Code <TextReader.java>`, :doc:`Supported Metadata Fields </metadata/TextReader>`)
 
-Freely Available Software:
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- a Targa specification document 
-- a few Targa files
 
 We would like to have:
 
-- an official specification document 
-- more SM-Camera files
 
 **Ratings**
 
@@ -50,13 +41,7 @@ Presence: |Fair|
 
 Utility: |Poor|
 
-
 **Additional Information**
-
-
-Source Code: :scifioreader:`TextReader.java`
-
-Notes:
 
 
 Reads tabular pixel data produced by a variety of software.

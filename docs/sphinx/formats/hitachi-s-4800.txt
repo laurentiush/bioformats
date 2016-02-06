@@ -4,7 +4,7 @@
 Hitachi S-4800
 ===============================================================================
 
-Extensions: .txt, .tif, .bmp, .jpg 
+Extensions: .txt, .tif, .bmp, .jpg
 
 Developer: `Hitachi <http://www.hitachi-hta.com/sites/default/files/technotes/Hitachi_4800_STEM.pdf>`_
 
@@ -12,30 +12,23 @@ Developer: `Hitachi <http://www.hitachi-hta.com/sites/default/files/technotes/Hi
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: HitachiReader (:bfreader:`Source Code <HitachiReader.java>`, :doc:`Supported Metadata Fields </metadata/HitachiReader>`)
 
-Freely Available Software:
 
-- `NDP.view <http://www.olympusamerica.com/seg_section/seg_vm_downloads.asp>`_
 
-Sample Datasets:
-
-- `OpenSlide <http://openslide.cs.cmu.edu/download/openslide-testdata/Hamamatsu-vms/>`_
 
 We currently have:
 
-- several Hitachi S-4800 datasets
+* several Hitachi S-4800 datasets
 
 We would like to have:
 
-- an official specification document 
-- more example datasets
 
 **Ratings**
 
@@ -50,12 +43,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`HitachiReader.java`
-
-Notes:
 
 

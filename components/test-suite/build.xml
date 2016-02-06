@@ -1,13 +1,13 @@
 <!--
 build.xml
 
-Ant build file for LOCI testing framework project.
+Ant build file for Bio-Formats testing framework project.
 Download Apache Ant from http://ant.apache.org/.
 Type "ant -p" for a list of targets.
 -->
 
 <project name="tests" default="jar" basedir=".">
-  <description>Build file for LOCI testing framework project</description>
+  <description>Build file for Bio-Formats testing framework project</description>
   <property name="root.dir" location="../.."/>
   <import file="${root.dir}/ant/java.xml"/>
   <property file="build.properties"/>
@@ -15,9 +15,7 @@ Type "ant -p" for a list of targets.
   <!-- overrides 'clean' target in common.xml -->
   <target name="clean" >
     <delete dir="${build.dir}"/>
-    <delete>
-      <fileset dir="." includes="*.log"/>
-    </delete>
+    <delete dir="target"/>
   </target>
 
   <target name="test-file-handles" depends="compile"
@@ -49,6 +47,7 @@ Type "ant -p" for a list of targets.
     <testng testname="TIFF compression tests"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -61,6 +60,7 @@ Type "ant -p" for a list of targets.
     description="run conversion tests with fixed input data">
     <testng testname="Minimal conversion tests" failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -73,9 +73,10 @@ Type "ant -p" for a list of targets.
     description="run automated tests on writers">
     <testng groups="all" testname="Writer tests"
       listener="loci.tests.testng.DotTestListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -84,6 +85,8 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory" value="${testng.directory}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
@@ -92,9 +95,10 @@ Type "ant -p" for a list of targets.
     description="run all automated tests">
     <testng groups="all" testname="All tests"
       listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest" useDefaultListeners="false">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -104,21 +108,27 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
 
-  <target name="test-config" depends="compile"
+  <target name="gen-config" depends="compile"
     description="generate config files for automated test suite">
     <testng groups="config" testname="Config generation"
       listener="loci.tests.testng.DotTestListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -128,13 +138,18 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
+  <target name="test-config" depends="gen-config"/>
 
   <target name="test-automated" depends="compile"
     description="run automated tests in group 'automated'">
@@ -146,11 +161,12 @@ Type "ant -p" for a list of targets.
     </condition>
 
     <testng groups="automated" testname="Automated tests"
-      listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
-      parallel="tests" threadCount="${testng.threadCount}"
+      listeners="loci.tests.testng.OrderingListener"
+      suitename="Bio-Formats software test suite"
+      parallel="instances" threadCount="${testng.threadCount}"
       failureProperty="failedTest" useDefaultListeners="false">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -160,10 +176,16 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
+      <jvmarg value="-Dlogback.configurationFile=${logback.configurationFile}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
@@ -172,9 +194,10 @@ Type "ant -p" for a list of targets.
     description="run automated tests in group 'fast'">
     <testng groups="fast" testname="Fast tests"
       listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -184,10 +207,15 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
@@ -196,9 +224,10 @@ Type "ant -p" for a list of targets.
     description="run automated tests in group 'pixels'">
     <testng groups="pixels" testname="Pixels tests"
       listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -208,10 +237,15 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
@@ -220,9 +254,10 @@ Type "ant -p" for a list of targets.
     description="run automated tests in group 'xml'">
     <testng groups="xml" testname="XML tests"
       listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -232,10 +267,15 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
@@ -244,9 +284,10 @@ Type "ant -p" for a list of targets.
     description="run automated tests in group 'type'">
     <testng groups="type" testname="Type tests"
       listeners="loci.tests.testng.DotTestListener,loci.tests.testng.OrderingListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -256,21 +297,27 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
+      <sysproperty key="testng.configDirectory" value="${testng.configDirectory}"/>
+      <sysproperty key="testng.configSuffix" value="${testng.configSuffix}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
 
-  <target name="test-config-xml" depends="compile"
+  <target name="gen-config-xml" depends="compile"
     description="generate OME-XML files for automated test suite">
     <testng groups="config-xml" testname="OME-XML generation"
       listener="loci.tests.testng.DotTestListener"
-      suitename="LOCI software test suite"
+      suitename="Bio-Formats software test suite"
       failureProperty="failedTest">
       <classpath>
+        <pathelement location="${basedir}"/><!-- logback.xml -->
         <pathelement location="${classes.dir}"/>
         <pathelement path="${component.runtime-cp}"/>
       </classpath>
@@ -280,12 +327,16 @@ Type "ant -p" for a list of targets.
       <sysproperty key="testng.directory-list" value="${testng.directory-list}"/>
       <sysproperty key="testng.filename" value="${testng.filename}"/>
       <sysproperty key="testng.directory" value="${testng.directory}"/>
+      <sysproperty key="testng.omexmlDirectory" value="${testng.omexmlDirectory}"/>
       <sysproperty key="testng.multiplier" value="${testng.multiplier}"/>
       <sysproperty key="lurawave.license" value="${lurawave.license}"/>
       <sysproperty key="testng.in-memory" value="${testng.in-memory}"/>
       <jvmarg value="-mx${testng.memory}"/>
+      <jvmarg value="-Duser.language=${user.language}"/>
+      <jvmarg value="-Duser.country=${user.country}"/>
     </testng>
     <fail if="failedTest"/>
   </target>
+  <target name="test-config-xml" depends="gen-config-xml"/>
 
 </project>

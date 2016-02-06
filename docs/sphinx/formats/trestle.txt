@@ -4,24 +4,22 @@
 Trestle
 ===============================================================================
 
-Extensions: .tif, .sld, .jpg 
+Extensions: .tif, .sld, .jpg
 
 
 
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: TrestleReader (:bfreader:`Source Code <TrestleReader.java>`, :doc:`Supported Metadata Fields </metadata/TrestleReader>`)
 
-Freely Available Software:
 
-- `SPIDER <http://www.wadsworth.org/spider_doc/spider/docs/spider.html>`_
 
 Sample Datasets:
 
@@ -29,13 +27,11 @@ Sample Datasets:
 
 We currently have:
 
-- a few example datasets 
-- `developer documentation from the OpenSlide project <http://openslide.org/Trestle%20format/>`_
+* a few example datasets 
+* `developer documentation from the OpenSlide project <http://openslide.org/Trestle%20format/>`_
 
 We would like to have:
 
-- an official specification document 
-- more Topometrix files
 
 **Ratings**
 
@@ -50,12 +46,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`TrestleReader.java`
-
-Notes:
 
 

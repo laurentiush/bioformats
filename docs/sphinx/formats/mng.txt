@@ -4,7 +4,7 @@
 MNG (Multiple-image Network Graphics)
 ===============================================================================
 
-Extensions: .mng 
+Extensions: .mng
 
 Developer: `MNG Development Group <http://www.libpng.org/pub/mng/mngnews.html>`_
 
@@ -12,13 +12,14 @@ Developer: `MNG Development Group <http://www.libpng.org/pub/mng/mngnews.html>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MNGReader (:bsd-reader:`Source Code <MNGReader.java>`, :doc:`Supported Metadata Fields </metadata/MNGReader>`)
+
 
 Freely Available Software:
 
@@ -30,12 +31,11 @@ Sample Datasets:
 
 We currently have:
 
-- the `libmng-testsuites <http://downloads.sourceforge.net/libmng/MNGsuite-20030305.zip>`_ package (from 2003 March 05, in C) 
-- a large number of MNG datasets
+* the `libmng-testsuites <http://downloads.sourceforge.net/libmng/MNGsuite-20030305.zip>`_ package (from 2003 March 05, in C) 
+* a large number of MNG datasets
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -50,13 +50,7 @@ Presence: |Fair|
 
 Utility: |Poor|
 
-
 **Additional Information**
-
-
-Source Code: :scifioreader:`MNGReader.java`
-
-Notes:
 
 
 .. seealso:: 

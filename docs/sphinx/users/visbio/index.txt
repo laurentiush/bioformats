@@ -1,7 +1,7 @@
 VisBio
 ======
 
-`VisBio <http://www.loci.wisc.edu/visbio/>`_ is a biological
+`VisBio <http://loci.wisc.edu/software/visbio>`_ is a biological
 visualization tool designed for easy visualization and analysis of
 multidimensional image data. VisBio uses Bio-Formats to import
 files as the Bio-Formats library originally grew out of our
@@ -16,7 +16,7 @@ necessary.
 Upgrading
 ---------
 
-It should be possible to use a :bf_plone:`newer version of Bio-Formats <downloads>` 
+It should be possible to use a :downloads:`newer version of Bio-Formats <>` 
 by overwriting the old **bio-formats.jar** and optional libraries within
 the VisBio distribution. For Mac OS X, you'll have to control click the
 VisBio program icon, choose "Show Package Contents" and navigate into

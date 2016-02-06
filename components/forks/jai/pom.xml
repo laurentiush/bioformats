@@ -6,9 +6,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>loci</groupId>
-    <artifactId>pom-scifio</artifactId>
-    <version>4.5-SNAPSHOT</version>
+    <groupId>ome</groupId>
+    <artifactId>pom-bio-formats</artifactId>
+    <version>5.2.0-SNAPSHOT</version>
     <relativePath>../../..</relativePath>
   </parent>
 
@@ -22,10 +22,13 @@
   <licenses>
     <license>
       <name>Simplified BSD License</name>
-      <url>${license.server}/jai_imageio/license.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+  <properties>
+    <project.rootdir>${basedir}/../../..</project.rootdir>
+  </properties>
 
   <build>
     <plugins>
@@ -33,7 +36,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <configuration>
-          <licenseName>jai_imageio</licenseName>
+          <licenseName>bsd_2</licenseName>
           <projectName>Fork of JAI Image I/O Tools.</projectName>
         </configuration>
       </plugin>
@@ -44,7 +47,7 @@
     <developer>
       <id>melissa</id>
       <name>Melissa Linkert</name>
-      <email>melissa.linkert@glencoesoftware.com</email>
+      <email>melissa@glencoesoftware.com</email>
       <url>http://www.openmicroscopy.org/site/about/development-teams/glencoe-software</url>
       <organization>Glencoe Software</organization>
       <organizationUrl>http://glencoesoftware.com/</organizationUrl>
@@ -62,13 +65,36 @@
   <!-- NB: for project parent, in case of partial checkout -->
   <repositories>
     <repository>
-      <id>imagej.releases</id>
-      <url>http://maven.imagej.net/content/repositories/releases</url>
-    </repository>
-    <repository>
-      <id>imagej.snapshots</id>
-      <url>http://maven.imagej.net/content/repositories/snapshots</url>
+      <id>ome.releases</id>
+      <url>http://artifacts.openmicroscopy.org/artifactory/ome.releases</url>
     </repository>
   </repositories>
+
+  <profiles>
+    <profile>
+      <id>latest-build</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <repositories>
+        <repository>
+          <id>ome.snapshots</id>
+          <url>http://artifacts.openmicroscopy.org/artifactory/ome.snapshots</url>
+        </repository>
+      </repositories>
+    </profile>
+
+    <profile>
+      <id>merge-build</id>
+
+      <repositories>
+        <repository>
+          <id>ome.unstable</id>
+          <url>http://artifacts.openmicroscopy.org/artifactory/ome.unstable</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 
 </project>

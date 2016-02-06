@@ -4,37 +4,31 @@
 MIAS (Maia Scientific)
 ===============================================================================
 
-Extensions: .tif 
+Extensions: .tif
 
-Developer: `Maia Scientific <http://www.maia-scientific.com/>`_
+Developer: `Maia Scientific <http://www.selectscience.net/supplier/maia-scientific/?compID=6088>`_
 
 
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: MIASReader (:bfreader:`Source Code <MIASReader.java>`, :doc:`Supported Metadata Fields </metadata/MIASReader>`)
 
-Freely Available Software:
 
-- `Leica LCS Lite <ftp://ftp.llt.de/softlib/LCSLite/LCSLite2611537.exe>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- several MIAS datasets
+* several MIAS datasets
 
 We would like to have:
 
-- an official specification document
 
 **Ratings**
 
@@ -49,12 +43,5 @@ Presence: |Poor|
 
 Utility: |Poor|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`MIASReader.java`
-
-Notes:
 
 

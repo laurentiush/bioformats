@@ -2,7 +2,7 @@
  * #%L
  * Fork of Apache Jakarta POI.
  * %%
- * Copyright (C) 2008 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2008 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -72,20 +72,22 @@ public class RawDataBlockList
     {
         List blocks = new ArrayList();
         bigBlockSize = size;
+        long pointer = stream.getFilePointer();
         while (true)
         {
-            RawDataBlock block = new RawDataBlock(stream, size);
+            RawDataBlock block = new RawDataBlock(stream, size, pointer);
 
             if (block.eof())
             {
                 break;
             }
             blocks.add(block);
-            if (size + stream.getFilePointer() > stream.length()) {
+            if (size + pointer > stream.length()) {
               break;
             }
-            stream.skipBytes(size);
+            pointer += size;
         }
+        stream.seek(pointer);
         setBlocks(( RawDataBlock [] ) blocks.toArray(new RawDataBlock[ 0 ]));
     }
 

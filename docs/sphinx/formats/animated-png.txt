@@ -4,7 +4,7 @@
 Animated PNG
 ===============================================================================
 
-Extensions: .png 
+Extensions: .png
 
 Developer: `The Animated PNG Project <http://www.animatedpng.com/>`_
 
@@ -12,13 +12,15 @@ Developer: `The Animated PNG Project <http://www.animatedpng.com/>`_
 **Support**
 
 
-SCIFIO: |yes|
+BSD-licensed: |yes|
 
 Export: |yes|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: APNGReader (:bsd-reader:`Source Code <APNGReader.java>`, :doc:`Supported Metadata Fields </metadata/APNGReader>`)
+
+Writer: APNGWriter (:bsd-writer:`Source Code <APNGWriter.java>`)
 
 Freely Available Software:
 
@@ -29,12 +31,11 @@ Freely Available Software:
 
 We currently have:
 
-- `a specification document <http://wiki.mozilla.org/APNG_Specification>`_ 
-- several APNG files
+* `a specification document <http://wiki.mozilla.org/APNG_Specification>`_ 
+* several APNG files
 
 We would like to have:
 
-- more Amira Mesh datasets
 
 **Ratings**
 
@@ -49,12 +50,5 @@ Presence: |Good|
 
 Utility: |Poor|
 
-
-**Additional Information**
-
-
-Source Code: :scifioreader:`APNGReader.java`
-
-Notes:
 
 

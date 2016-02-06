@@ -4,7 +4,7 @@
 Olympus ScanR
 ===============================================================================
 
-Extensions: .xml, .dat, .tif 
+Extensions: .xml, .dat, .tif
 
 Developer: `Olympus <http://www.olympus.com/>`_
 
@@ -13,30 +13,23 @@ Owner: `Olympus <http://www.olympus.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: ScanrReader (:bfreader:`Source Code <ScanrReader.java>`, :doc:`Supported Metadata Fields </metadata/ScanrReader>`)
 
-Freely Available Software:
 
-- `DIMIN <http://www.dimin.net/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- several ScanR datasets
+* several ScanR datasets
 
 We would like to have:
 
-- more OIB datasets (especially 2+ GB files) 
-- more FV1000 version 2 datasets
 
 **Ratings**
 
@@ -51,12 +44,5 @@ Presence: |Poor|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`ScanrReader.java`
-
-Notes:
 
 

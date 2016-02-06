@@ -4,7 +4,7 @@
 Canon DNG
 ===============================================================================
 
-Extensions: .cr2, .crw 
+Extensions: .cr2, .crw
 
 Developer: `Canon <http://canon.com>`_
 
@@ -12,13 +12,14 @@ Developer: `Canon <http://canon.com>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: DNGReader (:bfreader:`Source Code <DNGReader.java>`, :doc:`Supported Metadata Fields </metadata/DNGReader>`)
+
 
 Freely Available Software:
 
@@ -27,11 +28,11 @@ Freely Available Software:
 
 We currently have:
 
-- a few example datasets
+* a few example datasets
 
 We would like to have:
 
-- an official specification document
+* an official specification document
 
 **Ratings**
 
@@ -46,12 +47,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`DNGReader.java`
-
-Notes:
 
 

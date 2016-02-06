@@ -4,7 +4,7 @@
 Amira Mesh
 ===============================================================================
 
-Extensions: .am, .amiramesh, .grey, .hx, .labels 
+Extensions: .am, .amiramesh, .grey, .hx, .labels
 
 Developer: `Visage Imaging <http://www.amiravis.com/>`_
 
@@ -12,23 +12,24 @@ Developer: `Visage Imaging <http://www.amiravis.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: AmiraReader (:bfreader:`Source Code <AmiraReader.java>`, :doc:`Supported Metadata Fields </metadata/AmiraReader>`)
+
 
 
 
 We currently have:
 
-- a few Amira Mesh datasets
+* a few Amira Mesh datasets
 
 We would like to have:
 
-- more Amira Mesh datasets
+* more Amira Mesh datasets
 
 **Ratings**
 
@@ -43,12 +44,5 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`AmiraReader.java`
-
-Notes:
 
 

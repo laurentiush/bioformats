@@ -2,7 +2,7 @@
  * #%L
  * OME Bio-Formats manual and automated test suite.
  * %%
- * Copyright (C) 2006 - 2012 Open Microscopy Environment:
+ * Copyright (C) 2006 - 2015 Open Microscopy Environment:
  *   - Board of Regents of the University of Wisconsin-Madison
  *   - Glencoe Software, Inc.
  *   - University of Dundee
@@ -49,10 +49,6 @@ import org.slf4j.LoggerFactory;
  * Checks that no file handles are open after closing a reader.
  * This will not work on Windows, as it depends upon the 'lsof' command.
  *
- * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="http://trac.openmicroscopy.org.uk/ome/browser/bioformats.git/components/test-suite/src/loci/tests/testng/FileHandleTest.java">Trac</a>,
- * <a href="http://git.openmicroscopy.org/?p=bioformats.git;a=blob;f=components/test-suite/src/loci/tests/testng/FileHandleTest.java;hb=HEAD">Gitweb</a></dd></dl>
- *
  * @author Melissa Linkert melissa at glencoesoftware.com
  */
 public class FileHandleTest {
@@ -92,7 +88,9 @@ public class FileHandleTest {
     for (int i=0; i<finalHandles.size(); i++) {
       String s = finalHandles.get(i);
       if (s.endsWith("libnio.so") || s.endsWith("resources.jar") ||
-        s.startsWith("/usr/lib/") || s.startsWith("/opt/"))
+        s.startsWith("/usr/lib") || s.startsWith("/opt/") ||
+        s.startsWith("/usr/share/locale") || s.startsWith("/lib") ||
+        s.indexOf("turbojpeg") > 0 || s.indexOf("/jre/") > 0)
       {
         finalHandles.remove(s);
         i--;
@@ -124,6 +122,9 @@ public class FileHandleTest {
         if (line == null) {
           break;
         }
+      }
+      catch (IllegalThreadStateException e) {
+        LOGGER.trace("", e);
       }
       catch (Exception e) {
         LOGGER.warn("", e);

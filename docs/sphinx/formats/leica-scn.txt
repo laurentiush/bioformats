@@ -4,7 +4,7 @@
 Leica SCN
 ===============================================================================
 
-Extensions: .scn 
+Extensions: .scn
 
 Developer: `Leica Microsystems <http://www.leica-microsystems.com/>`_
 
@@ -12,30 +12,25 @@ Developer: `Leica Microsystems <http://www.leica-microsystems.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 2012-03-10
 
-Supported Metadata Fields:
+Reader: LeicaSCNReader (:bfreader:`Source Code <LeicaSCNReader.java>`, :doc:`Supported Metadata Fields </metadata/LeicaSCNReader>`)
 
-Freely Available Software:
 
-- `Leica LCS Lite <ftp://ftp.llt.de/softlib/LCSLite/LCSLite2611537.exe>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- a few sample datasets
+* a few sample datasets
 
 We would like to have:
 
-- an official specification document 
-- sample datasets that cannot be opened
+* an official specification document 
+* sample datasets that cannot be opened
 
 **Ratings**
 
@@ -50,12 +45,5 @@ Presence: |Fair|
 
 Utility: |Good|
 
-
-**Additional Information**
-
-
-Source Code: :bfreader:`LeicaSCNReader.java`
-
-Notes:
 
 

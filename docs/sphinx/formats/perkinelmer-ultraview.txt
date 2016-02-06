@@ -4,7 +4,7 @@
 PerkinElmer UltraView
 ===============================================================================
 
-Extensions: .tif, .2, .3, .4 , etc.
+Extensions: .tif, .2, .3, .4, etc.
 
 
 Owner: `PerkinElmer <http://www.perkinelmer.com/>`_
@@ -12,31 +12,23 @@ Owner: `PerkinElmer <http://www.perkinelmer.com/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: PerkinElmerReader (:bfreader:`Source Code <PerkinElmerReader.java>`, :doc:`Supported Metadata Fields </metadata/PerkinElmerReader>`)
 
-Freely Available Software:
 
-- `DIMIN <http://www.dimin.net/>`_
 
-Sample Datasets:
-
-- `Diffusion tensor MRI datasets <http://www.sci.utah.edu/%7Egk/DTI-data/>`_
 
 We currently have:
 
-- several UltraView datasets 
-- some :source:`Bio-Formats developer notes <components/bio-formats/doc/perkin-elmer.html>` for UltraView
+* several UltraView datasets
 
 We would like to have:
 
-- an official specification document 
-- more sample datasets
 
 **Ratings**
 
@@ -51,13 +43,7 @@ Presence: |Fair|
 
 Utility: |Fair|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`PerkinElmerReader.java`
-
-Notes:
 
 
 Other associated extensions include: .tim, .zpo, .csv, .htm, 
@@ -65,8 +51,8 @@ Other associated extensions include: .tim, .zpo, .csv, .htm,
 
 Commercial applications that support this format include: 
 
-- `Bitplane Imaris <http://www.bitplane.com/>`_ 
-- `Image-Pro Plus <http://www.mediacy.com/>`_ 
+* `Bitplane Imaris <http://www.bitplane.com/>`_ 
+* `Image-Pro Plus <http://www.mediacy.com/>`_ 
 
 .. seealso:: 
   `PerkinElmer UltraView system overview <http://www.perkinelmer.com/pages/020/cellularimaging/products/ultraviewvoxsystemsoverview.xhtml>`_

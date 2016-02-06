@@ -4,7 +4,7 @@
 LIM (Laboratory Imaging/Nikon)
 ===============================================================================
 
-Extensions: .lim 
+Extensions: .lim
 
 
 Owner: `Laboratory Imaging <http://www.lim.cz/>`_
@@ -12,30 +12,25 @@ Owner: `Laboratory Imaging <http://www.lim.cz/>`_
 **Support**
 
 
-SCIFIO: |no|
+BSD-licensed: |no|
 
 Export: |no|
 
 Officially Supported Versions: 
 
-Supported Metadata Fields:
+Reader: LIMReader (:bfreader:`Source Code <LIMReader.java>`, :doc:`Supported Metadata Fields </metadata/LIMReader>`)
 
-Freely Available Software:
 
-- `Leica LCS Lite <ftp://ftp.llt.de/softlib/LCSLite/LCSLite2611537.exe>`_
 
-Sample Datasets:
-
-- `VIFF Images <http://netghost.narod.ru/gff/sample/images/viff/index.htm>`_
 
 We currently have:
 
-- several LIM files 
-- the ability to produce more LIM files
+* several LIM files 
+* the ability to produce more LIM files
 
 We would like to have:
 
-- an official specification document
+* an official specification document
 
 **Ratings**
 
@@ -50,17 +45,11 @@ Presence: |Poor|
 
 Utility: |Poor|
 
-
 **Additional Information**
-
-
-Source Code: :bfreader:`LIMReader.java`
-
-Notes:
 
 
 Bio-Formats only supports uncompressed LIM files. 
 
 Commercial applications that support LIM include: 
 
-- `NIS Elements <http://www.nis-elements.com/>`_
+* `NIS Elements <http://www.nis-elements.com/>`_
